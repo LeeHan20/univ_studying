@@ -6,8 +6,8 @@ how to search imformation from google
     ex) "wow"
   2. "-" 뒤에 제거하고 싶은 단어를 넣음
     ex) speed - car
-  3. 사이트를 찾고 싶으면 "site:객체"를 넣음
-    ex) site:github
+  3. 사이트를 찾고 싶으면 "site:사이트주소"를 넣음
+    ex) site:github.com
   4. 정의를 찾고 싶으면 "define:객체"를 넣음
     ex) define:variation
   5. 특정한 파일을 찾고 싶으면 "filetype:객체"를 넣음
