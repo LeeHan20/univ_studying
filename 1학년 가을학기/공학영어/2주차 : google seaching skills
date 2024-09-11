@@ -1,0 +1,33 @@
+공학영어 2주차
+
+how to search imformation from google
+
+  1. 단어나 어구를 따옴표 안에 넣음 
+    ex) "wow"
+  2. "-" 뒤에 제거하고 싶은 단어를 넣음
+    ex) speed - car
+  3. 사이트를 찾고 싶으면 "site:객체"를 넣음
+    ex) site:github
+  4. 정의를 찾고 싶으면 "define:객체"를 넣음
+    ex) define:variation
+  5. 특정한 파일을 찾고 싶으면 "filetype:객체"를 넣음
+    ex) filetype:pdf
+  6. 숫자 범위를 나타낼 때는 ..를 사용함
+    ex) 1940..1950
+  7. 검색할 단어가 애매하면 *를 사용하자
+    ex) 아플 때 먹는 * (그거)
+
+
+조별과제
+
+  - 소프트웨어 공학에서 영어의 중요성에 대해 발표하기
+  - 발표 시간은 at least 5 minute
+  - deadline : 2024/9/25
+  - topic ex) Machine learning for drug discovery
+
+  
+개인과제
+
+  - 이름, 흥미있는 것, 전공 선택 이유 작성
+  - among search skils, at least 세 가지를 사용하여 검색한 것 스샷찍어서 제출
+  
