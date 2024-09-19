@@ -1,5 +1,7 @@
 //프로그래밍설계방법론 3주차
 
+//예제코드
+//보고 알아서 파악하자
 public class Hello {
   public static int sum(int n, int m) {
     return n + m;
