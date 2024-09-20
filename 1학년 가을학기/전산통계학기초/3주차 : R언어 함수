@@ -3,3 +3,14 @@
 byrow = T 이거는 2차원 백터를 행부터 채워달라는 요청. 외우자
 
 NaN = not available number (가능한 숫자가 아닐 때)
+
+[] 대괄호 -> 조건
+{} 중괄호 -> 묶음
+() 소괄소 -> 함수
+
+vector <- c(32, 53, 214, 54) #여기서 c는 combine, vector를 만든다
+
+vector[seq(1, 5, 2)] 1부터 5까지 2만큼 띄워서 보여줘라 #sequnce, like python
+
+v <- rep(c('a', 'b', 'c'), times = 3) #세 번을 반복
+v <- rep(c('a', 'b', 'c'), each = 3) #각각을 세 번 반복
