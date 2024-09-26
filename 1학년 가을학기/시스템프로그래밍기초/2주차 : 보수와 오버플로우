@@ -96,6 +96,9 @@ ex) x = x + 1;
 l-value / r-value
 저장소    / 값
 
+IEEE754 부동소수점 표현 (ieee)
+
+
 실행과정
 | 전역영역 | heep | 스택 |
 - 스택에 main함수를 위한 main stackframe이 만들어짐
