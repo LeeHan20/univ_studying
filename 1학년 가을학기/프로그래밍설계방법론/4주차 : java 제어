@@ -1,0 +1,27 @@
+프로그래밍설계방법론 4주차
+
+switch문
+ex)
+switch (식) {
+  case 값1:
+    실행문장 1;
+    break;
+  case 값2:
+    실행문장 2;
+    break;
+  case 값3:
+    실행문장 3;
+    break;
+  default:
+    실행문장 m;
+-> if문과 다르게 병렬적으로 처리되기 때문에 더 빠를 수 있음
+cf. break가 없다면 다음 case까지 다 실행해버림
+cf. default는 생략 가능
+cf. 값에는 보통 무슨 케이스 할 때 그게 들어감 (학점이 A인 케이스)
+
+MVC구조 (model view controller)
+- 모델 객체 : 제어기의 메시지에 따라 계산을 하는 객체 (코드)
+- 뷰 객체 : 사용자와의 상호작용을 관리하는 객체 (println, print)
+- 제어기 객체 : 정보를 전달하는 것을 관리하는 객체 (main)
+
+
