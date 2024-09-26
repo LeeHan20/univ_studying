@@ -75,7 +75,9 @@ bit shift
 함수
 - 말로 된 명령 (소괄호)
 
-//시스템프로그래밍 4주차
+
+실습
+
 #include <stdio.h>
 #include <limits.h>
 
