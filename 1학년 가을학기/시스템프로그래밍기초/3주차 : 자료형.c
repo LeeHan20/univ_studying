@@ -3,11 +3,11 @@
 #include <stdio.h>
 #include <limits.h>
 //    ----------------------- cf -------------------------
-//#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 //윈도우에서는 이게 없으면 컴파일이 안 된다고 하네요
 
 //    ----------------------- 2-8 -------------------------
-//#define PI 3.14
+#define PI 3.14
 //macro constant? 상수? -> just macro
 //컴파일을 하기 전에 PI를 모두 3.14로 치환하는 전처리 과정을 거침
 //#이 붙은 것들을 전처리 과정에서 처리함
