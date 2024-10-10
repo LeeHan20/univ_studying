@@ -1,5 +1,8 @@
 프로그래밍설계방법론 6주차
 
+3장까지 중간고사
+시험 시간 2시간
+
 for-each문
 - for (auto namu : namus)
 
@@ -23,4 +26,21 @@ String[]
 
 args
 - 파라미터
+
+try-catch-finally문
+- try : 예외가 발생할 가능성이 있는 실행문
+- catch : 처리할 예외 타입 선언, 예외 처리문
+- finally : 상관없이 실행됨
+
+ex)
+try {
+
+} catch (처리할 예외 타입 선언) {
+
+}
+finally {
+
+}
+
+
 
