@@ -12,3 +12,15 @@ for-each문
 배열
 - int[]
 
+public
+- 다른 클래스에서 메소드 접근 허용
+
+static
+- 객체 생성 전부터 호출 가능
+
+String[] 
+- 문자열
+
+args
+- 파라미터
+
