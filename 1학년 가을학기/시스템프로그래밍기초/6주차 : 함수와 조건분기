@@ -1,0 +1,17 @@
+시스템프로그래밍기초 6주차
+
+c언어 -> 절차(procedure, 함수) 지향 언어
+
+함수
+- parameter와 return data가 있음
+- 선언, 정의, 호출을 할 수 있음
+- 함수가 실행이 될 때마다 stackframe이 만들어짐(중괄호 열기 -> 스택프레임 만들기)
+
+ex)
+반환형식 함수이름(parameter) {
+
+  return;
+}
+
+return ~~; -> 어떤 값을 반환하겠다
+return; -> 함수의 실행을 종료하겠다
