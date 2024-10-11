@@ -1,0 +1,50 @@
+x <- 1:4                          # 벡터 x 생성
+y <- 5:8                          # 벡터 y 생성
+z <- matrix(1:20, nrow=4, ncol=5) # 매트릭스 z 생성 
+
+m1 <- cbind(x,y)                  # x와 y를 열 방향으로 결합하여 매트릭스 생성
+m1                                # 매트릭스 m1의 내용을 출력
+m2 <- rbind(x,y)                  # x와 y를 행 방향으로 결합하여 매트릭스 생성
+m2                                # 매트릭스 m2의 내용을 출력
+m3 <- rbind(m2,x)                 # 매트릭스 m2와 벡터 x를 행 방향으로 결합
+m3                                # 매트릭스 m3의 내용을 출력
+m4 <- cbind(z,x)                  # 매트릭스 z와 벡터 x를 열 방향으로 결합
+m4                                # 매트릭스 m4의 내용을 출력
+
+행, 열 어떻게 되는지 이해하기
+
+m1
+     x y
+[1,] 1 5
+[2,] 2 6
+[3,] 3 7
+[4,] 4 8
+
+m3
+  [,1] [,2] [,3] [,4]
+x    1    2    3    4
+y    5    6    7    8
+x    1    2    3    4
+
+score <- matrix(c(90,85,69,78,85,96,49,95,90,80,70,60), nrow=4)
+score
+rownames(score) <- c('John','Tom','Mark','Jane')
+colnames(score) <- c('English','Math','Science')
+score
+
+행과 열 (r, c)가 어디에 들어가는지 알고 있는 것이 중요함
+score["John",]
+
+score[,"English"]
+
+cf. 2차원 백터로 따지면 c가 외부 백터임
+
+
+colSums(iris[,-5])        # 열별 합계
+colMeans(iris[,-5])       # 열별 평균
+rowSums(iris[,-5])        # 행별 합계
+t(matrix)  # 행과 열 바꾸기
+
+IR.1 <- subset(iris, Species=='setosa')
+# 부분집함, 특정 부분 추출하기
+rowMeans(iris[,-5])       # 행별 평균
