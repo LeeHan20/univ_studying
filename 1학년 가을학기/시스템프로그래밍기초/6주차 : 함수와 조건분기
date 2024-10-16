@@ -16,3 +16,304 @@ ex)
 return ~~; -> 어떤 값을 반환하겠다
 return; -> 함수의 실행을 종료하겠다
 
+//시스템프로그래밍 6주차
+#include <stdio.h>
+#include <limits.h>
+#include <math.h>
+
+
+//    ----------------------- 5-11 -------------------------
+//void zeor_order(int a, int b, int c) {
+//    printf("there is no root \n");
+//    return;
+//}
+//
+//void first_order(int a, int b, int c) {
+//    double result = (-c)/(double)(b);
+//    printf("the root is %.3f \n", result);
+//    
+//    return;
+//}
+//
+//double calc_D(int a, int b, int c) {
+//    return (double)(b*b - 4*a*c);
+//}
+//
+//void second_order(int a, int b, int c) {
+//    double root1, root2, D, root_D;
+//    
+//    D = calc_D(a, b, c);
+//    root_D = sqrt(D);
+//    
+//    root1 = (-b + root_D) / (double)(2+a);
+//    root2 = (-b - root_D) / (double)(2+a);
+//    
+//    printf("root1 is %.3f \nroot2 is %.3f \n", root1, root2);
+//    
+//    return;
+//}
+//
+//int main(void) {
+//    
+//    int a, b, c;
+//    a = 2;
+//    b = 8;
+//    c = 3;
+//    
+//    if (a != 0) {
+//        second_order(a, b, c);
+//    }
+//    else if (b != 0) {
+//        first_order(a, b, c);
+//    }
+//    else {
+//        zeor_order(a, b, c);
+//    }
+//    
+//    return 0;
+//}
+
+//    ----------------------- 5-10 -------------------------
+//int main(void) {
+//    
+//    int max = 0;
+//    if (max == 4) {
+//        printf("yes \n");
+//    }
+//    else {
+//        printf("No \n");
+//    }
+//    
+//    
+//    return 0;
+//}
+
+//    ----------------------- 5-9 -------------------------
+//int main(void) {
+//    
+//    int a = 1;
+//    int b = 0;
+//    
+//    if (a) {
+//        if (b) {
+//            printf("a and b is both true \n");
+//        }
+//        else {
+//            printf("a is true, b is false \n");
+//        }
+//    }
+//    
+//    
+//    return 0;
+//}
+
+
+//    ----------------------- 5-6 -------------------------
+//int get_min(int a, int b, int c) {
+//    
+//    int min;
+//    
+//    if (a < b) {
+//        min = a;
+//    }
+//    else {
+//        min = b;
+//    }
+//    
+//    if (c < min) {
+//        min = c;
+//    }
+//    
+//    
+//    return min;
+//}
+//
+//int main(void) {
+//
+//    int first = 10;
+//    int second = 20;
+//    int third = 30;
+//
+//    int min = get_min(first, second, third);
+//
+//    printf("min is %d \n", min);
+//
+//    return 0;
+//}
+
+
+//    ----------------------- 5-5 -------------------------
+//int get_min(int a, int b, int c) {
+//    if (a < b && a < c) {
+//        return a;
+//    }
+//    else if (b < a && b < c) {
+//        return b;
+//    }
+//    else if (c < a && c < b) {
+//        return c;
+//    }
+//    
+//    return 0;
+//}
+
+//int get_min(int a, int b, int c) {
+//    
+//    int min = a;
+//    
+//    if (min > b) {
+//        min = b;
+//    }
+//    if (min > c) {
+//        min = c;
+//    }
+//    
+//    
+//    return min;
+//}
+
+
+//int main(void) {
+//    
+//    int first = 10;
+//    int second = 20;
+//    int third = 30;
+//    
+//    int min = get_min(first, second, third);
+//    
+//    printf("min is %d \n", min);
+//    
+//    return 0;
+//}
+
+
+
+//    ----------------------- 5-3 -------------------------
+//int main(void) {
+//    
+//    int score = 92;
+//    char grade;
+//    
+//    if (score > 90) {
+//        grade = 'A';
+//    }
+//    else if (score > 80) {
+//        grade = 'B';
+//    }
+//    else {
+//        grade = 'F';
+//    }
+//    
+//    printf("grade of this student is %c \n", grade);
+//    
+//    return 0;
+//}
+
+
+//    ----------------------- 5-2 -------------------------
+//int main(void) {
+//    
+//    int first, second;
+//    first = 20;
+//    second = 30;
+//    
+//    if (first > second) {
+//        printf("first is larger than second \n");
+//    }
+//    else if (first < second) {
+//        printf("second is larger than first \n");
+//    }
+//    else {
+//        printf("first and second is same \n");
+//    }
+//    
+//    return 0;
+//}
+
+
+
+//    ----------------------- 5-1 -------------------------
+//int main(void) {
+//    
+//    int x = 4;
+//    
+//    if (x % 2 ==0) {
+//        printf("x is even number \n");
+//    }
+//    else {
+//        printf("x is odd number \n");
+//    }
+//    
+//    return 0;
+//}
+
+
+//    ----------------------- 4-5 -------------------------
+//int show_menu(void) {
+//    int choice;
+//    printf("Press 1 to add \n2 to subtract \n3 to exit \n");
+//    scanf("%d", &choice);
+//    
+//    return choice;
+//}
+//
+//int main(void) {
+//    
+//    int selection;
+//    
+//    selection = show_menu();
+//    
+//    printf("%d \n", selection);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 4-2 -------------------------
+//int square(int m) {
+//    return m * m;
+//}
+//
+//int square_add(int first, int second) {
+//    
+//    int total;
+//    
+//    total = square(first) + square(second);
+//    
+//    return total;
+//}
+//
+//int main(void) {
+//    
+//    int first, second, sum;
+//    
+//    printf("enter weo integers : ");
+//    scanf("%d %d", &first, &second);
+//    
+//    sum = square_add(first, second);
+//    
+//    printf("%d \n", sum);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 4-1 -------------------------
+////함수 선언 -> 컴파일러에게 함수를 사용할 것이라고 알려줌
+//int function (int x, int y);
+//
+//int main(void) {
+//    
+//    //함수 호출
+//    int result = function(1, 2);
+//    
+//    printf("result is %d \n", result);
+//
+//    return 0;
+//}
+//
+////함수 정의
+//int function (int x, int y) {
+//    
+//    int z = x + y;
+//    
+//    return z;
+//}
