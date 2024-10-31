@@ -52,3 +52,4 @@ ex) int add(int a, ...), printf
 - va_end(name) : 리스트 삭제
 
 재귀호출
+- 니가 아는 그거
