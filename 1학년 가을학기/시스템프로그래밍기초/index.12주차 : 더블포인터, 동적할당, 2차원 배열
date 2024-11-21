@@ -22,4 +22,27 @@ malloc
 - 할당된 메모리의 주소(포인터)를 리턴함
 - 해당 malloc함수의 리턴을 받은 포인터를 free함수에 입력하여 메모리를 반납함
 - malloc함수는 포인터의 형식을 정해주지 않기 때문에(void pointer 리턴) 해당 포인터의 형변환을 할 필요가 있음
+- 힙 영역에 여유메모리가 없다면 null을 리턴함
+ex)
+int *ptr;
+ptr = (int*)malloc(sizeof(int));
+-> ptr은 int가 아니고 int형 포인터이기 때문에 malloc함수의 리턴값을 int형 포인터로 형변환하여 할당
+
+int *ptr;
+ptr = (int*)malloc(3 * sizeof(int));
+-> 배열과 같이 int형 메모리 3개를 할당받았기 때문에 ptr[2]까지 배열과 같이 사용 가능함
+   대괄호를 이용한 참조, 포인터를 이용한 참조 모두 가능함
+
+calloc
+- clearing alloc
+- malloc과 똑같이 할당함
+- malloc은 쓰레기값을 할당하고 calloc은 0을 할당함
+- 당연히 malloc보다 느림
+
+realloc
+- 원래 할당되었던 메모리에서 더 쓰고 싶을 때 사용
+- realloc(pointer, 5 * sizeof(int))
+- 입력받은 크기만큼 더 할당해줌
+
+ㅂ
 
