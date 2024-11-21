@@ -78,3 +78,242 @@ int * ptr [3]
    int (*arr[3])()
 소괄호, 대괄호를 싹 넘기면 선언할 수 있음
 
+
+
+//시스템프로그래밍 12주차
+#include <stdio.h>
+#include <limits.h>
+#include <math.h>
+#include <stdarg.h>
+#include <string.h>
+#include <stdlib.h>
+#include "time.h"
+
+//    ----------------------- ex -------------------------
+//int main(void) {
+//    
+//    int (*ptr)[3] = (int(*)[3])malloc(2 * 3 * sizeof(int));
+//    
+//    if (ptr == NULL) {
+//        return 0;
+//    }
+//    ptr[0][0] = 30;
+//    printf("%d \n", ptr[0][0]);
+//    free(ptr);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 11-17 -------------------------
+//int main(void) {
+//    
+//    int arr[2][3];
+//    int (*ptr) [3] = arr;
+//    
+//    for (int i = 0; i < 2; ++i) {
+//        for (int j = 0; j < 3; ++j) {
+//            ptr[i][j] = i + j;
+//        }
+//    }
+//    
+//    for (int i = 0; i < 2; ++i) {
+//        for (int j = 0; j < 3; ++j) {
+//            printf("%d \n", ptr[i][j]);
+//        }
+//    }
+//    
+//    return 0;
+//}
+
+//    ----------------------- ex -------------------------
+//int add(int x, int y) {
+//    
+//    return x + y;
+//}
+//
+//int sub(int x, int y) {
+//    
+//    return x - y;
+//}
+//
+//int main(void) {
+//    
+//    int (*fptr)(int, int) = add;
+//    printf("%d \n", add(2, 3));
+//    printf("%d \n", fptr(2, 3));
+//    
+//    fptr = sub;
+//    printf("%d \n", fptr(2, 3));
+//
+//    
+//    return 0;
+//}
+
+//    ----------------------- ex -------------------------
+//int main(void) {
+//    
+//    int arr[2][3] = {{1,2,3}, {4,5,6}};
+//    
+//    printf("%p \n", arr);
+//    printf("%p \n", arr + 1);
+//    
+//    printf("%p \n", &arr);
+//    printf("%p \n", &arr + 1);
+//    //arr의 주소를 반환한 값과 1을 더했기 때문에 arr전체를 건너뛰었음
+//    
+//    printf("%p \n", arr[0] + 1);
+//    //arr[0]이라는 원소 하나에 1을 더했기 때문에 int 1개(4바이트)를 건너뛰었음
+//    
+//    int (*p)[3] = arr;
+//    printf("%d \n", *(*p + 3));
+//    
+//    return 0;
+//}
+
+//    ----------------------- ex -------------------------
+//int main(void) {
+//    
+//    int arr[2][3] = {{10, 20, 30}, {40, 50, 50}};
+//    
+//    printf("%d \n", arr[0][2]);
+//    printf("%d \n", arr[1][1]);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 11-12 -------------------------
+//#define MAX 4
+//int* squre_array(void) {
+//    
+//    int i = 0;
+//    int *p = NULL;
+//    
+//    p = (int*)malloc(MAX * sizeof(int));
+//    
+//    if (p == NULL) {
+//        return p;
+//    }
+//    else {
+//        for (i = 0; i < MAX; ++i) {
+//            p[i] = i * i;
+//        }
+//        
+//        return p;
+//    }
+//    
+//    
+//    return NULL;
+//}
+//
+//int main(void) {
+//    
+//    int i;
+//    int* arr;
+//    
+//    arr = squre_array();
+//    
+//    for (int i = 0; i < MAX; ++i) {
+//        printf("%d, ", arr[i]);
+//    }
+//    printf("\n");
+//    
+//    free(arr);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 11-11 -------------------------
+//int* get_number(void) {
+//    
+//    int *p;
+//    p = (int*)malloc(sizeof(int));
+//    
+//    if (p == NULL) {
+//        return p;
+//    }
+//    else {
+//        *p = 20;
+//        return p;
+//    }
+//    
+//    return NULL;
+//}
+//
+//int main(void) {
+//    
+//    int *ptr = get_number();
+//    
+//    printf("%d \n", *ptr);
+//    free(ptr);
+//    
+//    return 0;
+//}
+
+//    ----------------------- ex -------------------------
+//int main(void) {
+//    
+//    int i;
+//    int *ptr;
+//    
+//    ptr = (int*)malloc(sizeof(int));
+//    //ptr은 int가 아니고 int형 포인터이기 때문에 malloc함수의 리턴값을 int형 포인터로 형변환하여 할당
+//    
+//    if (ptr == NULL) {
+//        return 0;
+//    }
+//    
+//    *ptr = 30;
+//    printf("%d \n", *ptr);
+//    
+//    free(ptr);
+//    
+//    
+//    return 0;
+//}
+
+//    ----------------------- 11-7 -------------------------
+//void swap(int **x, int **y) {
+//
+//    int *mid = *x;
+//
+//    *x = *y;
+//    *y = mid;
+//
+//
+//    int temp = **x;
+//
+//    **x = **y;
+//    **y = temp;
+//
+//    return;
+//}
+//
+//int main(void) {
+//
+//    int first = 20;
+//    int second = 30;
+//
+//    int *fp = &first;
+//    int *sp = &second;
+//
+//    swap(&fp, &sp);
+//
+//    printf("first is %d, second is %d \n", first, second);
+//    printf("fp is %d, sp is %d \n", *fp, *sp);
+//
+//    return 0;
+//}
+
+//    ----------------------- 11-6 -------------------------
+//int main(void) {
+//
+//    int num = 10;
+//    int *ptr = &num;
+//    int* *dptr = &ptr;
+//
+//    printf("%d \n", num);
+//    printf("%d \n", *ptr);
+//    printf("%d \n", **dptr);
+//
+//    return 0;
+//}
