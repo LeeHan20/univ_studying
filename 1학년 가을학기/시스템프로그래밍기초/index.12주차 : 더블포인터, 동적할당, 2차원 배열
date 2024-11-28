@@ -33,6 +33,12 @@ ptr = (int*)malloc(3 * sizeof(int));
 -> 배열과 같이 int형 메모리 3개를 할당받았기 때문에 ptr[2]까지 배열과 같이 사용 가능함
    대괄호를 이용한 참조, 포인터를 이용한 참조 모두 가능함
 
+int (*ptr)[3] = (int (*) [3])malloc(2 * 3 * sizeof(int));
+-> [3]은 내부 배열, ptr은 2차원 배열을 가리킴
+   int를 가리키는 포인터의 형식은 int이고 배열을 가리키는 포인터의 형식은 배열이여야 함
+   따라서 ptr의 형식은 (int*)임 / (int**) ptr
+= int** ptr = (int**)malloc(2 * 3 sizeof(int));
+
 calloc
 - clearing alloc
 - malloc과 똑같이 할당함
@@ -48,7 +54,7 @@ realloc
 - 니가 아는 그거
 - 포인터로 선언할 수 있음
 ex)
-int (*ptr)[3];
+int (*ptr)[3] = (int (*) [3])malloc(2 * 3 * sizeof(int));
 -> 포인터를 통해 구현된 2차원 배열
 
 int * ptr [3]
