@@ -1,0 +1,251 @@
+시스템프로그래밍기초 13주차
+
+문자열 저장 방법
+- 문자열을 코드 상에 입력
+- 해당 문자열에 해당하는 문자의 배열을 만들어 내부적으로 data영역에 생성함
+- 같은 문자열이 생성된다면 같은 주소의 문자열을 사용함
+
+\0 -> null문자 (문자열의 끝을 의미함)
+
+문자열 입력받기
+- scanf("%s", str);
+- str(문자열의 이름)은 그 자체로 이미 주소이기 때문에
+- int를 입력받을 때와 다르게 &(주소 연산자)가 필요하지 않음
+
+strcpy(char *dst, const char *src)
+- scr의 문자열을 dst에 할당시킴
+- dst는 할당받을 만큼의 메모리를 가지고 있어야 함
+
+strcat(char *s1, const char *s2)
+- 두 문자열 이어붙임
+- s1은 s2를 이어붙일 수 있을 만큼의 충분한 메모리를 할당받을 상태여야 함
+
+strcmp(const char *s1, const char *s2)
+- 사전 상의 순서 비교
+- 같으면 0, 첫 번째가 크면 양수, 작으면 음수를 리턴
+
+
+
+//시스템프로그래밍 13주차
+#include <stdio.h>
+#include <limits.h>
+#include <math.h>
+#include <stdarg.h>
+#include <string.h>
+#include <stdlib.h>
+#include "time.h"
+
+//    ----------------------- ex -------------------------
+//char* my_strcpy(char* dest, char * src) {
+//    
+//    int i = 0;
+//    
+//    while ((dest[i] = src[i]) != '\0') {
+//        ++i;
+//    }
+//    
+//    return dest;
+//}
+//
+//int main(void) {
+//    
+//    char dst[30];
+//    char scr[30];
+//    
+//    printf("Enter destination string down here : \n");
+//    scanf("%s", dst);
+//    
+//    printf("Enter source string donw here : \n");
+//    scanf("%s", scr);
+//    
+//    my_strcpy(dst, scr);
+//    
+//    printf("%s \n", dst);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 12 - 14 -------------------------
+//int my_string(char* str) {
+//    
+//    int i;
+//    for (i = 0; str[i] != '\0'; ++i) {
+//        
+//    }
+//    
+//    return i;
+//}
+//
+//int main(void) {
+//    
+//    char str[32];
+//    gets(str);
+//
+//    int length = my_string(str);
+//    
+//    printf("%d \n", length);
+//
+//    return 0;
+//}
+
+//    ----------------------- ex -------------------------
+//int main(void) {
+//    
+//    char* str1 = "apple";
+//    char* str2 = " is awsome";
+//    
+//    int x = strcmp(str1, str2);
+//    
+//    printf("%d \n", x);
+//
+//    return 0;
+//}
+
+//    ----------------------- 12 - 12 -------------------------
+//int main(void) {
+//    
+//    char* str1 = "pine";
+//    char* dest = (char*)malloc((strlen(str1) + 1) * sizeof(char));
+//    //null 문자를 받아야 하기 때문에 strlen + 1을 함
+//
+//    printf("%lu \n", strlen(str1));
+//    
+//    strcpy(dest, str1);
+//    
+//    printf("%s \n", dest);
+//    
+//    free(dest);
+//    
+//    return 0;
+//}
+
+//    ----------------------- ex -------------------------
+//int main(void) {
+//    
+//    char str[128];
+//    
+////    scanf("%s", str);
+////    printf("%s \n", str);
+//    
+//    printf("Enter a sentence down here: \n");
+//    gets(str);
+//    puts(str);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 12 - 5 -------------------------
+//#define MAX 15
+//int main(void) {
+//    
+//    char ch, str[MAX];
+//    int i;
+//    
+//    printf("Enter a sentence to reverse donw here \n");
+//    
+//    for (i = 0; (ch = getchar()) != '\n'; ++i) {
+//        str[i] = ch;
+//    }
+//    
+//    str[i] = '\0';
+//    
+//    for (--i; i >= 0; --i) {
+//        putchar(str[i]);
+//    }
+//    
+//    putchar('\n');
+//    
+//    printf("%s \n", str);
+//                 
+//    
+//    return 0;
+//}
+
+//    ----------------------- ex -------------------------
+//char* get_apple(void) {
+//    
+//    char* p = "apple";
+//    return p;
+//}
+//
+//
+//int main(void) {
+//    
+//    char* str = get_apple();
+//    
+//    printf("%s \n", str);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 12 - 2 -------------------------
+//int main(void) {
+//    
+//    char* str1 = "okay buddy";
+//    //at data
+//    char str2[15] = "bless you";
+//    //at stack
+//    
+//    printf("%lu \n", strlen(str1));
+//    printf("%lu \n", strlen(str2));
+//    printf("%lu \n", sizeof(str1));
+//    포인터의 크기는 64비트 시스템에서 보통 8바이트이기 때문에 8이 출력됨
+//    printf("%lu \n", sizeof(str2));
+//    
+//    return 0;
+//}
+
+//    ----------------------- ex -------------------------
+//int main(void) {
+//    
+//    char* ptr = "apple";
+//    char str[20];
+//    
+////    printf("%p, \n", "apple");
+////    printf("%p, \n", ptr);
+////    printf("%c, \n", *ptr);
+////    printf("%c, \n", ptr[2]);
+//    
+//    printf("Enter a string : ");
+//    scanf("%s", str);
+//    
+//    printf("%s \n", str);
+//    
+//    return 0;
+//}
+
+//    ----------------------- 11 - 19 -------------------------
+//int main(void) {
+//    
+//    int row = 2;
+//    int cal = 3;
+//    int **p;
+//    
+//    p = (int**)malloc(row * sizeof(int*));
+//    for (int i = 0; i < row; ++i) {
+//        *(p + i) = (int*)malloc(cal * sizeof(int));
+//    }
+//    
+//    int in = 0;
+//    for (int i = 0; i < row; ++i) {
+//        for (int j = 0; j < cal; ++j) {
+//            *(*(p + i) + j) = in;
+//            in++;
+//        }
+//    }
+//    
+//    for (int i = 0; i < row; ++i) {
+//        for (int j = 0; j < cal; ++j) {
+//            printf("%d ", *(*(p + i) + j));
+//        }
+//        printf("\n");
+//    }
+//    
+//    for (int i = 0; i < row; i++) {
+//            free(*(p + i));
+//        }
+//        free(p);
+//    
+//    
+//    return 0;
+//}
