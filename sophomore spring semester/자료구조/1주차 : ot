@@ -3,3 +3,23 @@
 교재 : data structure and algorithms in java (6th)
 
 진짜 오티임 내용 없음
+
+-----------
+
+두 번째 시간
+
+데이터가 잘 저장되는 것의 필요성
+-> 개많아서
+
+자료구조에서 생성, 삭제, 읽기, 찾기가 주요 요건임
+
+encapulation -> 정한 방법 외의 방법으로 접근 허가 안 하는 것
+
+abstract data type (ADT)
+- 이 자료구조는 이렇게 되어야 한다
+
+-> 구현은 알아서, like 요구사항
+
+전통적인 관점에서, int, float, character, pointer까지만 singer임 다른 것들은 user defined임
+
+프로그램 판단 -> 이 수업은 코드의 효율성을 기준으로 함
