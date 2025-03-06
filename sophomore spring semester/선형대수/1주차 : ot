@@ -39,6 +39,7 @@ skew-symmetric matrix (반대칭행렬)
 
 diagonal matrix (대각행렬)
 - 주대각선성분만 0이 아닌 행렬
+- diag(2, 3, 1)로 표기
 
 upper and lower triangular matrix (상삼각행렬, 하삼각행렬)
 - 주대각선성분을 기준으로 위쪽이 0이 아니면 상삼각, 아래쪽이 0이 아니면 하삼각
@@ -49,6 +50,5 @@ nilpotent matrix (닐포텐트 행렬)
 
 trace (대각합)
 - 모든 주대각선성분의 합
-
-
+- tr(A)로 표기
 
