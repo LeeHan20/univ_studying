@@ -1,2 +1,33 @@
 자료구조 2주차
 
+시간복잡도 best case와 worst case를 나누자
+-> 백준은 just naive한 worst case만을 고려하기 때문에 수업에서는 average case도 고려할 필요가 있음
+
+System.currentTimeMillis() -> 자바에서 런타임 측정
+
+# 알고리즘 분석 과정
+- pseudo-code(의사코드)로 작성
+- 수학적 표현으로 표현 
+- big-O 함수로 단순화 -> primitive operation의 실행 횟수가 결정함
+- input을 무한대로 보내서 무한에 접근하는 속도를 봄
+
+pseudo-code (의사코드)
+- 고레벨의 algorithm description
+- english보다 더 구조적임
+- 프로그램보다 덜 디테일
+- 그냥 과정을 써놓은거임
+- 시험때 그냥 니가 재량껏 쓰셈
+
+big-oh notation (빅오함수)
+- just worst case를 구함
+
+asymptotic analysis 
+- 빅오함수의 러닝타임을 결정하는 탐색임
+- 무한대로 보냈을 때의 성능을 보는 것
+
+수업에서 지칭하는 메모리는 ram을 말하는 것
+cpu 메모리는 레지스터를 가지고 있음
+그리고 외부에 캐시 메모리를 둬서 부족한 공간을 또 추가함
+
+헤르츠 -> 초에 몇 번 신호가 튀냐
+
