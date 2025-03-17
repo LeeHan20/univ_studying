@@ -1,0 +1,32 @@
+선형대수 2주차
+
+linear equation (선형방정식)
+simultaneaus linear equation (연립선형방정식)
+method of elimination (가감법)
+method of substitution (대입법)
+
+Ax = b
+- 연립방정식 행렬표현
+- A는 개수행렬, x는 미지수행렬, b는 값 행렬
+
+REF, RREF (사다리꼴 행렬, 기약 사다리꼴 행렬)
+- row echelon form, reduced ~
+- 아래로 갈수록 0의 성분이 많아지는 행렬
+- 처음 나타나는 0이 아닌 성분은 1이여야 하며, 그 1은 선행성분이라고 함
+- i와 i + 1에 대해 선행성분이 존재한다면, i + 1의 선행성분은 i의 오른쪽에 위치하여야 함
+
+elementary row operation (기초 행연산)
+- Eij -> just 두 행 교환
+- Ei(k) -> i행에 스칼라 k배를 스케일함
+- Eji(k) -> i행에 k를 곱하여 j행에 더함
+- * 기초행연산을 통해 만들어진 행렬은 연산 전의 행렬과 언제나 동치임
+-> 그걸 row-equivalent(행 동치)라고 부름
+
+gaussian elimination (가우스 소거법)
+- x = [A|b]인 첨가행렬(argment matrix)로 표현함
+- 연립방정식의 개수 부분(A)를 왼쪽에 때려넣고 값 부분(b)을 오른쪽에 때려넣으면 됨
+- 최종적으로 기초행연산을 이용하여 REF를 만드는 것이 목표
+
+gauss - jordan elimination (가우스-조던 소거법)
+- REF뿐만 아니라 RREF로 만들어서 왼쪽의 개수행렬을 항등행렬로 만들어버림
+- 각각의 b행렬이 미지수의 값이 됨
