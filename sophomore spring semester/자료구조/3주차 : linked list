@@ -1,0 +1,25 @@
+자료구조 3주차
+
+# linked list
+- 포인터를 사용하여 구현한 리스트
+- 두 개의 데이터를 저장하는데, element와 pointer를 저장함
+- 메모리 사용을 가변적으로 할 수 있음
+- first pointer가 가장 중요함 (다른 메모리들을 찾아가야 해서)
+- 마지막 node는 null을 할당해놓음
+
+add
+- 첫 번째에 add할 때는 무조건 새로운 노드가 head를 가리킨 후 head를 새로운 노드로 바꿈
+- 가장 마지막에 넣을 때가 O(n)임, 마지막 노드를 찾아가야 하기 때문에
+- 근데? tail pointer를 쓰면 O(1)에 할 수 있음
+
+remove
+- 첫 번쨰 원소를 remove할 때 cursor pointer를 사용해서 첫 번째의 주소를 save하고 해야 함
+-> 안 하면 메모리 사용량에서 문제가 생김 / garbage collection을 해줘야 한다
+
+doubly linked list
+- element가 pointer를 두 개 사용하여 앞뒤를 볼 수 있음
+
+circulary linked list
+- doubly connection의 일종, 가장 앞과 뒤를 이은 것임
+
+
