@@ -25,10 +25,23 @@ circulary linked list
 ---------------------------------------------------
 두 번쨰 수업
 
+base case
+- ex. factorial에서 0! = 1로 재귀를 끊는 것
+- 종료 조건이라고 보면 됨
+
 recursion
-- linear
-- binary
-- multiple
+- linear -> 하나만 재귀호출
+- binary -> 두 개만 재귀호출
+- multiple -> 여러개 재귀호출
+
+recursive call
+- base case로 call이 반복될 때마다 다가가야 함
+
+recursion trace
+- program counter라는게 있는데 그게 재귀가 끝나고 어디로 돌아가야 하는지 저장하고 있음
+- 그림으로 그냥 추적을 하라고
+
+english ruler 숙제가 나갈 수 있음
 
 
 
