@@ -6,3 +6,24 @@ just 복습...
 -----------------------------------
 두 번쨰 수업
 
+determinant(행렬식)
+det(A) 또는 |A|로 표기 / 전제 : A는 정방행렬
+
+sarrus computation (사루스 계산법)
+{a, b, c
+ d, e, f
+ g, h, i}
+-> 각각을 주대각선성분의 개수만큼 곱하여 (aei+bfg+cdh)−(ceg+bdi+afh)가 됨
+
+minor(소행렬식)
+{a, b, c
+ d, e, f
+ g, h, i}
+-> 하나의 원소에 대응하는 행과 열을 제외한 나머지의 행렬식
+
+adjugate(여인자)
+-> (-1)^(i+j) * |Mij| 
+그냥 진짜 이거임
+
+companion matrix(수반행렬)
+-> just 해당하는 i와 j를 나열한 행렬의 전치행렬
