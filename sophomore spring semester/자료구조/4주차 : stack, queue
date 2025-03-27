@@ -22,4 +22,4 @@
 
 # deque
 - 양방향 pop, push
-- 당연히 양방향 포인터를 다 가지고 있음 (double linked list)
+- 당연히 양방향 포인터를 다 가지고 있음 (doubly linked list)
