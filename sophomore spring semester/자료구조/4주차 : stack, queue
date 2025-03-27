@@ -1,0 +1,25 @@
+자료구조 4주차 
+
+첫 번째 수업
+
+과제 : for문으로 english ruler 만드시오
+-> c++로 만들었음, 자바로 번역하기
+
+# stack
+- last in, first out
+- 리스트로 만들어짐 / 배열, 포인터로 각각 만들 수 있음
+- push, pop, top, size, isempty / 니가 아는 그거
+
+----------------------------------------------------
+
+두 번째 수업
+
+# queue
+- first in, first out
+- enqueue -> push, dequeue -> pop
+- 나머지는 니가 아는 그거
+- wrapped-around configration을 통해서도 구현 가능
+
+# deque
+- 양방향 pop, push
+- 당연히 양방향 포인터를 다 가지고 있음 (double linked list)
