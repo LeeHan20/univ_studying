@@ -25,5 +25,29 @@ iterator
 - next, hasnext
 - iterable하다 : 순회할 수 있다
 
+tree
+- non-linear
+- depth of "node" -> for that node
+- height of "tree" -> sub tree or tree
+
+preorder
+- 나 먼저 보고 자식을 봄
+- 나-왼-오
+- depth first algorithm
+- 왼쪽으로 쭉 가는데 그 순서 그대로임
+- 이게 basic인 듯
+
+postorder
+- 자식 먼저 보고 나를 봄
+- 왼-오-나
+- depth first algorithm
+
+inorder
+- 자식 하나를 먼저 보고 날 보고 다른 자식을 봄
+- 왼-나-오
+
+
+
+
 
 
