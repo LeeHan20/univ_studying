@@ -1,0 +1,28 @@
+선형대수 7주차
+
+Cramer’s role
+-> 개수행렬의 한 열을 b행렬로 대체하여 구한 determinant가 해당 열에 해당하는 미지수
+
+Vector의 단위행렬
+-> 백터의 크기(피타리아저씨) 구해서 각각을 나누면 됨
+
+Inner product (내적)
+-> a와 b를 곱한 것으로 표기하는데 그냥 각각의 인자를 곱하면 됨
+내적이 0이면 수직
+
+Cross product (외적)
+| i  j  k |
+| x1 x2 x3 |
+| y1 y2 y3 |
+
+Or ||x|| * ||y|| * sin 로 외적 구함
+
+X x y = (-y) x X
+
+Scalar triple product
+|| X x Y || * || z || * |cos|
+= |(X x Y)| • Z |
+= | x1 x2 x3|
+   | y1 y2 y3|
+   | z1 z2 z3|
+부피를 나타냄
