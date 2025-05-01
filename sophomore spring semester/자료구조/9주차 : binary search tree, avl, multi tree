@@ -1,0 +1,63 @@
+자료구조 9주차
+
+첫 번쨰 수업
+
+ordered_map
+- consists of entry(pair)
+- firstEntry()
+- lastEntry()
+- floorEntry(k) : entry with largest key
+- ceilingEntry(k) : entry with smallest key
+
+binary search tree
+- structural property : only binary tree
+- left subtree should bigger than right subtree
+- get(k) : key가 k인 node 반환
+- put(k, v) : k값을 가지는 것을  삽입
+- remove(k) : key가 k인 node 제거
+- deletion :
+    해당 노드의 오른쪽 서브트리에서 가장  가장 왼쪽
+    혹은 왼쪽 서브트이의 가장 오른쪽 노드와 스왑함
+    / 프리디세서, 서세서
+- search, remove, inseert : O(n)임 -> linear한 트리가 있을 수 있기 때문에
+
+-----------------------------------------------------------------------
+
+두 번쨰 수업
+
+AVL tree
+- 이름 just 이니셜임
+- height balanced tree
+- structural property : binary search tree, difference of children is allowed at most one
+- insertion balancing method : 
+    조상들을 따라가며 첫 번째로 문제가 발생하는 노드는 z라고 명명함 / 루트에 가장 가까운 문제있는 놈이 z
+    a, b, c는 전체 트리를 inorder로 돌렸을 때 z, y, x 중 가장 먼저 보는 애가 a (ex. z = a or y = a)
+    그렇게 하고 b를 zyx 서브트리의 루트로 하고 a를 left, c를 right로 하면 해결
+- remove balancing method :
+    z는 first unbalanced node encounterd임, y는 z늬 child 중 가장 큰 height를 가지는 것, 
+    x는 y의 child 중 가장 깊이가 깊은 서브트리의 루트
+    그렇게 하고 위와 같이 b - a - c로 바꿔줌
+
+norm
+- search tree면 order가 있음
+
+multi-way search tree 
+- key를 n개까지 가질 수 있음
+- key의 수 n개를 가진 노드는 child를 n + 1개 가져야 함
+- inorder : parent - first child - parent - second child ...
+
+(2, 4)tree
+- subset of multi-way search tree 
+- key를 1~3, child를 2~4개 가질 수 있는 트리
+- all external nodes should have same height
+- split operation:
+    parent node에 문제를 propagation함
+    결국 위의 트리를 뒤집거나 binding하는 로직과 똑같음
+- in case of remove:
+    underflow가 발생할 경우, remove 된 node의 left sibing이 multi면 fusion(
+    root가 없어지면 프리디세서 혹은 그걸로 대체하고 아래서 문제해결
+
+    
+
+
+
