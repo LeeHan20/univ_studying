@@ -1,0 +1,28 @@
+자료구조 11주차
+
+red-black tree
+- subset of (2, 4)tree, binary search tree
+- root is black
+- every leaf is black
+- child of red node is black
+- all leaves have same black depth (루트까지 올라갔을 때 블랙의 수가 모두 갇아야 함)
+- logn으로 됨
+- insertion : 일단 binary search tree처럼 어디 넣을지 search함, 기본은 레드로 넣음
+  우선, 문제가 생긴 애(리프의 부모)를 v라고 함
+  case 1: v의 sibling이 black. rectructuring으로 해결함
+    v와 v의 자식, v의 부모를 binary search tree식으로 칠하고 그 subtree의 root를 black, 나머지를 red로 함
+  case 2: v의 sibling이 red, recoloring으로 해결함
+    v와 v의 sibling을 black, v의 부모와 자식을 red로 칠함
+ - deletion : double black problem이 생길 수 있음(black depth가 다르게 됨)
+  여기는 문제가 생긴 애를 r이라고 함(지워진 애의 자식), r의 sibling을 y라고 함, 그리고 r의 부모는 p
+  case 1: y가 블랙이고 red child가 있음
+    y와 y의 자식, 부모를 restructuring하고
+    원래 y의 자식의 색을 새로운 subtree의 root의 색상으로 하며 다른 두 노드는 black으로 함
+  case 2 - 1: y가 블랙이고 y의 child가 black밖에 없고 p가 red
+    y를 red, p를 black으로 바꿈
+  case 2 - 2: y가 블랙이고 y의 child가 black밖에 없고 p가 black
+    y를 red로 바꾸고 r을 p로 바꿔 부모 단계로 문제를 전이하여 다시 판단
+  case 3: y가 red 
+    y를 black, p를 red로 변경, 그 후 왼쪽 회전을 수행
+
+오우 뭐야 이거
