@@ -1,0 +1,40 @@
+자료구조 12주차
+
+sort
+- rearrange n elements
+- internal sort(selectoin, merge 등이 이거임), external sort가 있음
+- comparator에 의해 나열되면 다 정렬임
+- key에 의해 정렬되되는데 key는 쓸 수는 있는데 적합하다/아니다로 나뉨
+
+note. pq가 heap 뿐만이 아니고 linear하게도 정의할 수 있음
+
+quick sort
+- kind of divide and conquer
+- using pivot
+- mothod:
+    pick pivot
+    in left side, put element that smaller than pivot
+    untill the element is only one, doing task
+    그리고 다 그냥 리프들을 순서대로 말아올리면 그게 정렬 된 거임
+- O(n)
+- expected running time은 nlongn
+
+-----------------------------------------------------------
+
+in-place quick sort
+- 그냥 주어진 백터 하나에서 quick sort를 한다는 건데 현하킴이 알려준게 이거임
+- 피봇을 제외한 것들 중 left, right를 놓고
+- l은 pivot보다 큰 값이 나올 때까지, r은 pivot보다 작은 값이 나올 때까지 전진하여 스왑
+- l과 r을 다시 선정하여 l >= r일 때까지 한 후, pivot과 l을 바꿈
+
+merge sort
+- divide : 진짜 그냥 반으로 쪼개기만 함
+- conquer : 올라오면서 두 개의 파트를 queue나 stack으로 가장 앞 값만 비교하여 정렬함
+- quick sort는 divide에서, merge sort는 conquer에서 비교함
+- nlogn
+
+# external memory sorting
+
+
+
+
