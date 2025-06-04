@@ -1,0 +1,45 @@
+자료구조 14주차
+
+graph
+- incidence
+- vertices, edge
+
+spanning subgraph
+- include all vertices on original graph
+
+connectivity
+- just connection
+
+tree
+- undirected
+- all vertices should connected each other
+
+forest
+- if the nodes are not connected, its forest
+
+spanning tree
+- spanning graph that doesnt have cycle
+
+dfs, bfs
+- 니가 아는 그거
+- O(n + m) / edge + node
+
+shortest path!
+- dfs -> 아예 아님
+- bfs -> 시작점에서 특정 vertice까지의 최단경로를 보장
+
+articulation point
+- 지우면 그래프가 단절되는 노드
+
+biconnected graph
+- graph with no articulation point
+
+biconnected component
+- 
+
+
+
+
+
+
+
