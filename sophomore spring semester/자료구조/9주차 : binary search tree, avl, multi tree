@@ -34,7 +34,7 @@ AVL tree
     a, b, c는 전체 트리를 inorder로 돌렸을 때 z, y, x 중 가장 먼저 보는 애가 a (ex. z = a or y = a)
     그렇게 하고 b를 zyx 서브트리의 루트로 하고 a를 left, c를 right로 하면 해결
 - remove balancing method :
-    z는 first unbalanced node encounterd임, y는 z늬 child 중 가장 큰 height를 가지는 것, 
+    z는 first unbalanced node encounterd임, y는 z의 child 중 가장 큰 height를 가지는 것, 
     x는 y의 child 중 가장 깊이가 깊은 서브트리의 루트
     그렇게 하고 위와 같이 b - a - c로 바꿔줌
 
