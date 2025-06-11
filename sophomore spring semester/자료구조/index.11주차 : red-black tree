@@ -8,7 +8,7 @@ red-black tree
 - root is black
 - every leaf is black
 - child of red node is black
-- all leaves have same black depth (루트까지 올라갔을 때 블랙의 수가 모두 갇아야 함)
+- all leaves have same black depth (루트까지 올라갔을 때 블랙의 수가 모두 같아야 함)
 - logn으로 됨
 - insertion : 일단 binary search tree처럼 어디 넣을지 search함, 기본은 레드로 넣음
   우선, 문제가 생긴 애(리프의 부모)를 v라고 함
