@@ -1,0 +1,21 @@
+프로그래밍 설계 방법론 2일차
+
+note : 여기 있는 내용이 다가 아님, 그냥 쓸만한 것들 발췌해놨음
+
+실수 기본형 : double / py, c는 float
+진리값 : boolen
+string은 레퍼런스 타입으로 사용함
+
+System.out.printf 형식 지정자
+%d, %f, %s, %b 등
+소수점 자리 지정: %.2f, %.4f 
+// c에서 쓰는 거하고 똑같음
+
+
+문자열↔숫자 변환 메서드
+String → int: Integer.parseInt(str)
+String → double: Double.parseDouble(str)
+중요! String: "" + num 또는 Integer.toString(num), Double.toString(num)
+
+
+      
