@@ -1,0 +1,28 @@
+programing methodology day 7
+
+what is java api?
+- 자바가 미리 제공하는 패키지 형태의 코드 모음
+- System.out.printf(), Math.random(), Math.PI 등
+- 활용하려면 import 키워드로 해당 패키지를 불러와야 함 
+
+Scanner
+- next() : 공백 전까지 한 단어 읽기
+- nextLine() : 개행 전까지 한 줄 전체 읽기
+- nextInt(), nextDouble() : 정수·실수 입력용 메서드 
+- Scanner input = new Scanner(System.in);으로 input 객체를 정의해서 써야 함
+
+Math 클래스 (java.lang)
+- Math.PI : π 값
+- Math.random() : 0.0 이상 1.0 미만 임의 실수
+- Math.floor(a), Math.sqrt(a), Math.pow(a,b) 등 수학 함수 제공
+- java.lang 패키지는 자동 import 되므로 별도 선언 불필요 
+
+Random 클래스 (java.util)
+- import java.util.Random; new Random() 으로 객체 생성
+- nextInt(), nextInt(n), nextDouble(), nextBoolean() 등 다양한 난수 생성 메서드 제공 
+
+ArrayList 클래스
+- import java.util.ArrayList;
+- ArrayList<E> 로 제네릭 타입 지정
+- add(obj), set(idx,obj), remove(idx), size(), get(idx) 등 컬렉션 관리 메서드 제공 
+- Arrays.toString(array), Arrays.deepToString(nestedArray) 로 배열 내용 쉽게 출력
