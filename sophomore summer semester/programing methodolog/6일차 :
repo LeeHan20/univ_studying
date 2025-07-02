@@ -1,2 +1,30 @@
 programing methodology day 6
 
+constructure (생성자)
+public static class Cat {
+		String name;
+		int age;
+		
+		void tell_about_you() {
+			System.out.printf("name is %s, age is : %d \n", name, age);
+		}
+		
+		Cat(String n, int a) {
+			name = n;
+			age = a;
+		}
+	}
+
+reference variable vs basic variable
+reference : pointer
+basic : just variable
+
+class variable and class method
+static field : shared to all instances, allocated at starting class
+static method : can be called without creat object
+
+access modifier (접근 제한자)
+public : 어디서나 접근 허용.
+(default) : 같은 패키지 내에서만.
+protected : 같은 패키지 + 서브클래스.
+private : 선언된 클래스 내부만.
