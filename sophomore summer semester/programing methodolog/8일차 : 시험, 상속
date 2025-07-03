@@ -1,2 +1,28 @@
 programing methodology day 8
 
+inheritance
+- 부모 클래스의 메소드, 필드를 자식 클래스가 받을 수 있음
+
+up-casting
+- 자식 클래스는 부모 클래스의 정보를 가지고 있음
+- double이 int로 형변환 될 수 있는 것처럼 정보를 잃으며 부모 클래스의 객체로 캐스팅을 할 수 있음
+- parent p = (parent) instancechild; 에서 parent 생략 가능
+- chlid는 parent 타입의 배열로 묶어 관리 가능, 이 때 자식만의 정보는 사용 불가. 암시적 형변환이 된 상태임
+
+overriding
+- parent의 맴버를 재정의하는 것
+- overriding한 자식을 up-casting하면 재정의된 맴버가 우선 적용
+
+생성자 (constructure)
+- child의 생성자를 생성하기 위해서는 우선 부모의 것이 필요
+- 자식의 생성자 생성 시 super(parameter)를 자동적으로 생성하여 먼저 부모의 생성자를 생성함
+
+추상 클래스
+- 직접 instance를 생성하지는 못 함
+- 다른 클래스에 상속하기 위한 클래스
+- ex. 동물 / 사자, 호랑이, 토끼
+
+
+
+
+
