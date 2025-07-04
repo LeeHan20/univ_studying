@@ -1,0 +1,20 @@
+programing methodology day 9
+
+this
+- 진짜 "이거"를 가리키는 키워드
+- class 이름을 써서 ExClass.name이렇게 쓰는데
+- class 안에서 this.name 이런식으로 진짜 "이거"를 가리키는 거임
+- super.name을 하면 부모의 this를 가리키는 거임. this하고 활용은 비슷
+
+protected, private
+- private는 상속받는 클래스가 getName(), getName() 등으로 접근해야 함
+- protected는 super.name으로 접근할 수 있음
+
+interface
+- 개발을 어떻게 할지 정해놓은 것
+- 약간 추상 클래스 모음?
+- 이걸 implements한 구현 클래스(구현체)가 오버라이딩을 해야 함
+- 뭐 안 쓰면 기본적으로 abstract public이 됨
+- 다중 implements가 가능함 / class는 안 됨
+
+
