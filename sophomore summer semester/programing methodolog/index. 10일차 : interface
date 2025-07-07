@@ -1,0 +1,15 @@
+programing methodology day 10
+
+interface default method
+- default도 쓸 수 있음, c++의 함수하고 똑같이 정의
+- default는 선택적으로 오버라이딩 함 (당연)
+- 객체를 생성하여 호출해야 함
+
+interface static method
+- 오버라이딩 불가
+- 객체를 생성하지 않고 접근 가능
+
+note
+- 추상 클래스 내부에서는 default 사용 불가
+- c++에서 쓰던 const 상수 선언은 java에서 final임
+ex. public static final int A = 4;
