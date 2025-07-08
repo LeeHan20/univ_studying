@@ -1,4 +1,4 @@
-programing methodology day 5
+programming methodology day 5
 
 int[] src = {1,2,3}, dst = new int[3];
 System.arraycopy(src, 0, dst, 0, src.length);
