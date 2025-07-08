@@ -1,1 +1,22 @@
 programming methodology day 11
+
+예외 처리
+- try catch finally
+- try{}에 오류가 발생할 수 있는 코드가 들어감
+- catch()에 exception이 들어감, 그걸 처리한 후
+- catch() {}에 처리 시 실행할 코드가 들어감
+- finally에는 예외 발생 여부에 상관없이 실행될 코드가 들어감
+
+예외의 종류
+- Throwable 클래스의 Error, Exception 클래스에 담겨 있음
+- Exception ; 코드 상에서 문제가 되는 부분 / ex. out of boundary
+    Runtime Exception : 컴파일 상에서 확인되는 문제 / checked의 sibling, unchecked의 parent
+    실행 예외(Unchecked Exception) : 컴파일 상에서 확인되지 않는 문제
+    일반 예외(Checked Exception) : 인터럽트나 입출력 문제
+- Error : 외적인 문제 / ex. 메모리 부족, 장치 고장
+
+throw
+- throw new 예외생성자();
+- printStackTrace(); : 예외 발생 과정을 출력
+
+
