@@ -1,1 +1,1 @@
-# programing methodology
+# programming methodology
