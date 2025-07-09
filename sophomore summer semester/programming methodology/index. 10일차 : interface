@@ -2,6 +2,7 @@ programming methodology day 10
 
 interface default method
 - default도 쓸 수 있음, c++의 함수하고 똑같이 정의
+- 즉, 추상이 아닌 것을 interface에 정의할 수 있음
 - default는 선택적으로 오버라이딩 함 (당연)
 - 객체를 생성하여 호출해야 함
 
