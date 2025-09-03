@@ -1,0 +1,9 @@
+computational statistics week 1
+
+textbook 파이썬을 이용한 기초통계학
+통계적 추정, 가설검정
+
+# 통계분석이란?
+- 모집단이 있고 표본이 있음
+
+cut(), describe()
