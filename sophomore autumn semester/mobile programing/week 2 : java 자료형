@@ -1,0 +1,64 @@
+기본 자료형
+- java에서 boolean은 정수 리터럴에 포함되지 않음 (0, 1로 판단 불가)
+- 이스케이프시퀀스는 c++과 동일하게 처리
+- 실수는 IEEE 754방식으로 c++과 동일하게 처리
+- long과 float는 사용할 때 숫자 뒤에 L or l / F or f를 반드시 붙여야 함
+
+객체 자료형
+- 기본과 다르게 레퍼런스(c++의 포인터 방식)를 저장하여 값을 저장
+- 문자열 등
+- 자바에서 string은 클래스이기 때문에 string의 앞글자가 대문자(관용)이고 객체 생성 방식처럼도 생성할 수 있음
+- ex: 
+    String s = "dfds";
+    String s1 = new String("fdjskl");
+
+
+------------------------------------------------------------------------------
+
+package ch02;
+
+public class Use_variables {
+
+	public static void main(String[] args) {
+		int a = 4324;
+		short b = 32;
+		long c = 4324L;
+		float d = 432.432f;
+		double e = 432.64364;
+		boolean f = true;
+		char g = '5';
+		String str = "my name is park chun bea";
+		
+		System.out.printf("a is %d, b is %d, c is %d \nd is "
+				+ "%.2f, e is %f, f is %b \ng is %c\n str is %s", a, b, c, d, e, f, g, str);
+	}
+
+------------------------------------------------------------------------------
+
+package ch02;
+
+public class ex01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int age = 25;
+		String name = "박춘배";
+		
+		System.out.println(age);
+		System.out.println(name);
+		System.out.println(age + name);
+		System.out.println(age + 3 + name);
+		System.out.println();
+		
+		System.out.println(name + ": \n");
+		
+		System.out.printf("i want precision about 3 and the number is %.3f \n", 0.52352);
+		System.out.printf("his name is %s and his age is %d. \nhow old he is \n", name, age);
+		
+		
+	}
+
+}
+
+
+}
