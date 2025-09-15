@@ -1,1 +1,8 @@
-djfkls
+Lean에서 Theorem이라고 하면 진짜 무슨 누구누구의 정리
+example이라고 하면 실험적으로 테스트해보는 것
+
+use
+--
+ring by
+
+
