@@ -1,0 +1,31 @@
+Math.ramdom() -> 0이상 1미만의 난수를 반환
+
+String result = switch(one) {
+  case 1, 2, 3:
+    yield "어라";
+  case 5, 6, 7:
+    yield "어라라";
+  default:
+    yield "어라라라";
+};
+-> switch를 이용해서 할당을 좀 쉽게 할 수도 있음
+얘는 일반 switch와 다르게 break를 안 써도 다음 걸로 안 넘어감
+
+String result = switch(one) {
+  case 1, 2, 3 -> "어라";
+  case 5, 6, 7 -> "어라라라";
+  default -> "어라라라라라라";
+};
+'->'를 써서도 할 수 있음
+
+String result = switch(one) {
+		  case 1, 2, 3 -> {
+			  System.out.printf("test");
+		  		yield "gdhk";
+		  }
+		  case 5, 6, 7 -> "어라라라";
+		  default -> "어라라라라라라";
+};
+'->'를 쓸 경우 구문을 많이 쓰고 싶다면 {}를 써야 함
+
+
