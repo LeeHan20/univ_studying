@@ -6,134 +6,7 @@
 
 
 
-chapter 1, 2
-
-명제
-- 변수(variables) : 아직 값을 모르는 대상을 가리키는 기호
-- 보편명제(universal statement) : 한 집합의 모든 원소에 대해 성질이 참
-    ex. 모든 양의 수는 0보다 크다
-- 조건명제(conditional statement) : if ~, then ~ 꼴
-    ex. n이 18로 나누어떨어지면, 6으로도 나누어떨어진다
-- 존재명제(existential statement) : 적어도 하나가 있다
-    ex. 짝수인 소수가 존재한다
-- 보편•조건명제(universal conditional statement) : 보편성과 조건을 함께 가진 명제
-    ex. 모든 동물 a에 대해, 만약 a가 고양이라면, a는 포유류이다
-- 보편•존재명제(universal existential statements) : 앞부분은 보편, 뒷부분은 존재
-    ex. 모든 냄비에는 뚜껑이 있다
-- 존재•보편명제(existentail universal statements) : 앞부분 존재, 뒷부분 보편
-    ex. 모든 양의 정수보다 작거나 같은 양의 정수 m이 존재한다
-
-- 여기 피티한테 정리하라고 하기
-
-집합
-- ℤ⁺ : positive intergers
-
-- 부분집합(subset) 
-    정의 : A ⊆ B ⇔ ∀x (x ∈ A → x ∈ B) 
-    풀이 : 모든 x에 대해 x가 A에 속해 있으면 B에도 속한다 | 이건 ∈과 다르게, {2} ⊆ {1, 2, 3} 이런식으로 집합끼리 비교, 참고로 ∈는 2 ∈ {1, 2, 3}이 맞는 표현
-    기호 : ⊆
-- 진부분집합(proper subset)
-    정의 : A ⊊ B ⇔ (A ⊆ B) ∧ (∃x (x ∈ B ∧ x ∉ A)) 
-    풀이 : A가 B의 부분집합일 때, B에 속하고 A에 속하지 않는 어떤 x가 존재한다
-    기호 : ⊊
-
-
-
-chapter 3
-
-수 체계
-- ℕ : # check nat / 자연수 
-- ℤ : # check int / 정수
-- ℚ : # check rat / 유리수
-- ℝ : # check real / 실수
-- ℂ : # check complex / 복소수
-
-- 기수(base) 아래첨자(오른쪽)로 진법 표현
-    0b(2진수), 0o(8진수), 0x(16진수), 그냥(10진수)
-
-- Lean
-ex.1 (기수 계산)
-def digit_expansion(a2 a1 a0 base : Nat):
-    Nat := a2 * base^2 + a1 * base^1 + a0 * base^0 
-#eval digit_expansion5 8 9 10
-
-ex.2 (복소수 연산)
-import Mathlib.Data.Complex.Basic
-open Complex
-variables{abc d: ℝ}  
-#check I --복소수 I를 바로 쓸 수 있게 만들어줌
-
-#eval (Complex.mk ab) + (Complex.mk c d)  --(a+ c) + (b+ d) * I
-#eval (Complex.mk ab) -(Complex.mk c d)  --(a-c) + (b-d) * I
-#eval (Complex.mk ab) * (Complex.mk c d)  --(a* c -b* d) + (a* d+ b* c) * I
-#eval (Complex.mk ab) / (Complex.mk c d)
-
-
-수 계산
-- 닫혀있다(closed) : 해당 수 체계끼리 연산하여 해당 수 체계가 나오지 않는다
-    ex : 자연수를 자연수로 나누면 자연수가 나오지 않을 수 있음 -> 자연수는 나눗셈에 대해 닫혀있다
-- 항등원(identity element, 연산해도 같아지는 것)
-    덧셈 :  0
-    곱셈 : 1
-- 역원(inverse element, 연산하여 항등원이 되는 것)
-    덧셈 : -a
-    곱셈 : 1/a
-- 하한항(lowest) : 기약분수
-- 합 연산 : 
-
-- Lean
-ex.1 (덧셈의 교환법칙 증명 by 수학적 귀납법)
-import Mathlib.Data.Complex.Basic
-
-example (a b : N) : a + b = b + a :=
-begin
-    induction b with d hd, -- b에 대해 수학적 귀납법 시작, 1단계 : b = 0
-    rw Nat.add_zero,
-    rw Nat.zero_add,
-    rfl
-
-    -- 2단계 : 귀납가정(hd), b = succ d
-    rw Nat.add_succ, 
-    rw hd,
-    rw Nat.succ_add,
-    rfl
-end
-
-ex.2 (덧셈의 결합법칙 증명 by 수학적 귀납법)
-import Mathlib.Data.Complex.Basic
-
-example (a b c : N) : (a + b) + c = a + (b + c) :=
-begin
-    induction c with d hd, -- c에 대해 수학적 귀납법 시작, 1단계 : c = 0
-    rw Nat.add_zero,
-    rw Nat.zero_add,
-    rfl
-
-    -- 2단계 : 귀납가정(hd), c = succ d
-    rw Nat.add_succ, 
-    rw hd,
-    rw Nat.succ_add,
-    rfl
-end
-
-ex.3 (덧셈의 분배법칙 by 수학적 귀납법)
-import Mathlib.Data.Complex.Basic
-
-example (a b c : N) : (a + b) * c = a * b + a * c :=
-begin
-    induction c with d hd, -- c에 대해 수학적 귀납법 시작, 1단계 : c = 0
-    rw Nat.add_zero,
-    rw Nat.zero_add,
-    rfl
-
-    -- 2단계 : 귀납가정(hd), c = succ d
-    rw Nat.add_succ, 
-    rw Nat.mul_succ
-    rw hd,
-    rw add_assoc, -- 결합법칙 적용
-    rfl
-end
-
+# operators
 논리
 - ∀ : \forall / 모든 (for all)
 - ∃ : \exists / 존재 (there exists)
@@ -143,38 +16,12 @@ end
 - ↔ : \iff / 동치 (iff)
 - → : \to 또는 \imp / 함의 (implies)
 
-집합/관계
-- ∈ : \in / 원소 포함
-- ∉ : \notin / 원소가 아님
-- ⊂ : \subset / 부분집합
-- ⊆ : \subseteq / 부분집합(= 포함 가능)
-- ∪ : \union / 합집합
-- ∩ : \inter / 교집합
-
-수학 기호
-- ≤ : \le / 작거나 같다
-- ≥ : \ge / 크거나 같다
-- × : \times / 곱셈, 곱집합
-- • : \plus / 덧셈 
-- ∑ : \sum / 합 (summation)
-- ∏ : \prod / 곱 (product)
-
 함수/증명 구조
 - λ : \lam / 람다 (익명 함수)
 - ⟨ ⟩ : \langle, \rangle / 쌍 (pair, angle bracket)
 - ⊢ : \vdash / 턴스타일 (provable)
 
-그리스 문자
-- α : \alpha / 그리스 소문자 알파
-- β : \beta / 그리스 소문자 베타
-- γ : \gamma / 그리스 소문자 감마
-- Γ : \Gamma / 그리스 대문자 감마
-- φ : \phi / 그리스 소문자 파이
-- Φ : \Phi / 그리스 대문자 파이
-
-
 # Lean tactics
-
 rfl 
 - reflexivity(반사성) : 좌변과 우변이 동일하다라는 사실을 자동으로 증명하는 전술.
 - 정의적 동일성(definitional equality)만 인정한다.
@@ -197,4 +44,161 @@ ring
 
 by
 - by 뒤에 오는 것으로 전술을 하겠다
+
+
+
+
+
+
+chapter 1, 2
+
+명제
+- 변수(variable) : 아직 값을 모르는 대상을 가리키는 기호
+- 보편명제(universal statement) : 한 집합의 모든 원소에 대해 성질이 참
+    ex. 모든 양의 수는 0보다 크다
+- 조건명제(conditional statement) : if ~, then ~ 꼴
+    ex. n이 18로 나누어떨어지면, 6으로도 나누어떨어진다
+- 존재명제(existential statement) : 적어도 하나가 있다
+    ex. 짝수인 소수가 존재한다
+- 보편•조건명제(universal conditional statement) : 보편성과 조건을 함께 가진 명제
+    ex. 모든 동물 a에 대해, 만약 a가 고양이라면, a는 포유류이다
+- 보편•존재명제(universal existential statement) : 앞부분은 보편, 뒷부분은 존재
+    ex. 모든 냄비에는 뚜껑이 있다
+- 존재•보편명제(existentail universal statement) : 앞부분 존재, 뒷부분 보편
+    ex. 모든 양의 정수보다 작거나 같은 양의 정수 m이 존재한다
+
+- 여기 피티한테 정리하라고 하기
+
+집합
+- ℤ⁺ : positive intergers
+
+- 부분집합(subset) 
+    정의 : A ⊆ B ⇔ ∀x (x ∈ A → x ∈ B) 
+    풀이 : 모든 x에 대해 x가 A에 속해 있으면 B에도 속한다 | 이건 ∈과 다르게, {2} ⊆ {1, 2, 3} 이런식으로 집합끼리 비교, 참고로 ∈는 2 ∈ {1, 2, 3}이 맞는 표현
+    기호 : ⊆
+- 진부분집합(proper subset)
+    정의 : A ⊊ B ⇔ (A ⊆ B) ∧ (∃x (x ∈ B ∧ x ∉ A)) 
+    풀이 : A가 B의 부분집합일 때, B에 속하고 A에 속하지 않는 어떤 x가 존재한다
+    기호 : ⊊
+
+- 보수(complment) : k진법의 수 n이 있을 때 n을 k의 최소 제곱수가 되도록 만드는 수
+    ex. 2진수 보수는 전체를 toggle한 값
+
+chapter 3
+
+# 수 체계
+- ℕ : # check nat / 자연수 
+- ℤ : # check int / 정수
+- ℚ : # check rat / 유리수
+- ℝ : # check real / 실수
+- ℂ : # check complex / 복소수
+
+- 기수(base) 아래첨자(오른쪽)로 진법 표현
+    0b(2진수), 0o(8진수), 0x(16진수), 그냥(10진수)
+
+- Lean
+-------------------------------------------------------------------
+
+ex.1 (기수 계산)
+def digit_expansion(a2 a1 a0 base : Nat):
+    Nat := a2 * base^2 + a1 * base^1 + a0 * base^0 
+#eval digit_expansion5 8 9 10
+
+-------------------------------------------------------------------
+
+ex.2 (복소수 연산)
+import Mathlib.Data.Complex.Basic
+open Complex
+variables{abc d: ℝ}  
+#check I --복소수 I를 바로 쓸 수 있게 만들어줌
+
+#eval (Complex.mk ab) + (Complex.mk c d)  --(a+ c) + (b+ d) * I
+#eval (Complex.mk ab) -(Complex.mk c d)  --(a-c) + (b-d) * I
+#eval (Complex.mk ab) * (Complex.mk c d)  --(a* c -b* d) + (a* d+ b* c) * I
+#eval (Complex.mk ab) / (Complex.mk c d)
+
+-------------------------------------------------------------------
+
+
+# 수 계산
+- 닫혀있다(closed) : 해당 수 체계끼리 연산하여 해당 수 체계가 나오지 않는다
+    ex : 자연수를 자연수로 나누면 자연수가 나오지 않을 수 있음 -> 자연수는 나눗셈에 대해 닫혀있다
+- 항등원(identity element, 연산해도 같아지는 것)
+    덧셈 :  0
+    곱셈 : 1
+- 역원(inverse element, 연산하여 항등원이 되는 것)
+    덧셈 : -a
+    곱셈 : 1/a
+- 하한항(lowest) : 기약분수
+- 합 연산 : ​∑​ (sigma)
+    아래 Lean 사용법 봐야 함, 성질은 다 아니 skip
+- 곱 연산 : Π (product)
+
+- Lean
+-------------------------------------------------------------------
+
+ex.1 (덧셈의 교환법칙 증명 by 수학적 귀납법)
+import Mathlib.Data.Complex.Basic
+
+example (a b : N) : a + b = b + a :=
+begin
+    induction b with d hd, -- b에 대해 수학적 귀납법 시작, 1단계 : b = 0
+    rw Nat.add_zero,
+    rw Nat.zero_add,
+    rfl
+
+    -- 2단계 : 귀납가정(hd), b = succ d
+    rw Nat.add_succ, 
+    rw hd,
+    rw Nat.succ_add,
+    rfl
+end
+
+-------------------------------------------------------------------
+
+ex.2 (덧셈의 결합법칙 증명 by 수학적 귀납법)
+import Mathlib.Data.Complex.Basic
+
+example (a b c : N) : (a + b) + c = a + (b + c) :=
+begin
+    -- induction c with d hd, -- c에 대해 수학적 귀납법 시작, 1단계 : c = 0
+    rw Nat.add_zero,
+    rw Nat.zero_add,
+    rfl
+
+    -- 2단계 : 귀납가정(hd), c = succ d
+    rw Nat.add_succ, 
+    rw hd,
+    rw Nat.succ_add,
+    rfl
+end
+
+-------------------------------------------------------------------
+
+ex.3 (덧셈의 분배법칙 by 수학적 귀납법)
+import Mathlib.Data.Complex.Basic
+
+example (a b c : N) : (a + b) * c = a * b + a * c :=
+begin
+    induction c with d hd, -- c에 대해 수학적 귀납법 시작, 1단계 : c = 0
+    rw Nat.add_zero,
+    rw Nat.zero_add,
+    rfl
+
+    -- 2단계 : 귀납가정(hd), c = succ d
+    rw Nat.add_succ, 
+    rw Nat.mul_succ
+    rw hd,
+    rw add_assoc, -- 결합법칙 적용
+    rfl
+end
+
+-------------------------------------------------------------------
+
+ex.4 (시그마 기본 사용 방법)
+#eval List.sum(List.map(λ i => 2 * i - 1) (List range' 1 10))
+
+-------------------------------------------------------------------
+
+
 
