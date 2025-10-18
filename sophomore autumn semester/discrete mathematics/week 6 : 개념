@@ -50,9 +50,9 @@ by
 
 
 
-chapter 1, 2
+chapter 0
 
-명제
+# 명제
 - 변수(variable) : 아직 값을 모르는 대상을 가리키는 기호
 - 보편명제(universal statement) : 한 집합의 모든 원소에 대해 성질이 참
     ex. 모든 양의 수는 0보다 크다
@@ -67,9 +67,8 @@ chapter 1, 2
 - 존재•보편명제(existentail universal statement) : 앞부분 존재, 뒷부분 보편
     ex. 모든 양의 정수보다 작거나 같은 양의 정수 m이 존재한다
 
-- 여기 피티한테 정리하라고 하기
 
-집합
+# 집합
 - ℤ⁺ : positive intergers
 
 - 부분집합(subset) 
@@ -81,10 +80,8 @@ chapter 1, 2
     풀이 : A가 B의 부분집합일 때, B에 속하고 A에 속하지 않는 어떤 x가 존재한다
     기호 : ⊊
 
-- 보수(complment) : k진법의 수 n이 있을 때 n을 k의 최소 제곱수가 되도록 만드는 수
-    ex. 2진수 보수는 전체를 toggle한 값
 
-chapter 3
+chapter 1 (수의 표현과 연산)
 
 # 수 체계
 - ℕ : # check nat / 자연수 
@@ -109,13 +106,13 @@ def digit_expansion(a2 a1 a0 base : Nat):
 ex.2 (복소수 연산)
 import Mathlib.Data.Complex.Basic
 open Complex
-variables{abc d: ℝ}  
-#check I --복소수 I를 바로 쓸 수 있게 만들어줌
+variables{a b c d: ℝ}  
+#check I -- 복소수 I를 바로 쓸 수 있게 만들어줌
 
-#eval (Complex.mk ab) + (Complex.mk c d)  --(a+ c) + (b+ d) * I
-#eval (Complex.mk ab) -(Complex.mk c d)  --(a-c) + (b-d) * I
-#eval (Complex.mk ab) * (Complex.mk c d)  --(a* c -b* d) + (a* d+ b* c) * I
-#eval (Complex.mk ab) / (Complex.mk c d)
+#eval (Complex.mk ab) + (Complex.mk c d)  --(a + c) + (b + d) * I
+#eval (mk ab) - (Complex.mk c d)  --(a - c) + (b - d) * I
+#eval (mk ab) * (Complex.mk c d)  --(a * c - b * d) + (a * d + b * c) * I
+#eval (mk ab) / (Complex.mk c d)
 
 -------------------------------------------------------------------
 
@@ -133,6 +130,13 @@ variables{abc d: ℝ}
 - 합 연산 : ​∑​ (sigma)
     아래 Lean 사용법 봐야 함, 성질은 다 아니 skip
 - 곱 연산 : Π (product)
+    공집합 : 곱할 항이 하나도 없으면 0
+    상수항의 곱 : Π(i = 1 ~ n) c = c^n
+    곱 분할 : Π(i = i ~ n) xi * yi = Π(i = 1 ~ n) xi * Π(i = 1 ~ n) yi
+    범위 나누기 : Π(i = 1 ~ n) xi = Π(i = 1 ~ k) xi * Π(i = k + 1 ~ n) xi
+- 나누기 연산 유용한 정리
+    d|m이고, d|n이면, d|(m + n) and (m - n)
+    ...(너가 아는거)
 
 - Lean
 -------------------------------------------------------------------
@@ -161,7 +165,7 @@ import Mathlib.Data.Complex.Basic
 
 example (a b c : N) : (a + b) + c = a + (b + c) :=
 begin
-    -- induction c with d hd, -- c에 대해 수학적 귀납법 시작, 1단계 : c = 0
+    induction c with d hd, -- c에 대해 수학적 귀납법 시작, 1단계 : c = 0
     rw Nat.add_zero,
     rw Nat.zero_add,
     rfl
@@ -195,10 +199,126 @@ end
 
 -------------------------------------------------------------------
 
-ex.4 (시그마 기본 사용 방법)
-#eval List.sum(List.map(λ i => 2 * i - 1) (List range' 1 10))
+ex.4 (∑​(i = 1 ~ n) c = n * c | 상수의 합 증명)
+import Mathlib.Data.Finset.Basic
+import Mathlib.Data.Real.Basic
+open Finset
+variable {n: ℕ} {c : ℝ}
+
+example: (sum(range n) (λ _ => c)) = n * c :=
+by rw[sum_const, Nat.card_range, mul_comm]
+
+-- 주의점 : 6, 7번째 줄의 sum, range, sum_const는 Finset이라는 네임스페이스에 기반하여 있기 때문에 반드시 open Finset을 해줘야 함
+-- 참고 : range n은 0 ~ n - 1까지인데, 여기서는 c만 정의되어 있어 횟수만 중요하기 때문에 상관없음
+-- sum_const : 상수함수의 합 정리. 즉, 이미 되어 있는 정리를 사용하여 증명할 것임.
+--     (range n).card * c로 먼저 변함. n * c와 정확히 같지 않기 때문에 다음 정리들이 필요
+-- Nat.card_range : (range n).card = n 
+--     range n의 원소 수는 n과 같다는 것이 자명. 따라서 (range n).card를 n으로 바꿔줌
+--     이후, n * c로 바뀔 것 같지만, sum_const가 scalar multiplication이라 c가 앞에 옴
+-- mul_comm : 곱셈의 교환법칙, c * n을 n * c로 바꿔줌
+
+-------------------------------------------------------------------
+
+ex.5 (∑(i = 1 ~ n) c * xi = c * ∑(i = 1 ~ n) xi | 상수배의 합 증명)
+import Mathlib.Data.Finset.Basic
+import Mathlib.Data.Real.Basic
+open Finset
+variable {x: ℕ → ℝ} {n: ℕ} {c : ℝ}
+
+example: (sum(range n) (λ i => c * x i)) = c * sum(range n) x:=
+by rw[sum_mul]
+
+-- sum_mul : 합 오른쪽에 곱이 있을 때 곱을 빼냄. 여기서는 mul_sum이 더 직접적. 상관은 없는 듯
+
+-------------------------------------------------------------------
+
+ex.6 (∑(i = 1 ~ n) xi + yi = ∑(i = 1 ~ n) xi + ∑(i = 1 ~ n) yi | 합의 분배 증명)
+import Mathlib.Data.Finset.Basic
+import Mathlib.Data.Real.Basic
+open Finset
+variable {x: ℕ → ℝ} {y : ℕ → ℝ} {n: ℕ}
+
+example : (sum(range n) (λ i => x i + y i)) = sum(range n) x + sum(range n) y :=
+by rw[sum_add_distrib]
+
+-- Finset.sum_add_distrib : ∑ x in s, (f x + g x) = (∑ x in s, f x) + (∑ x in s, g x)
+-- 이건 그냥 있는 정리를 이용해서 한 번에 끝냈음
+
+-------------------------------------------------------------------
+
+ex.7 (∑(i = 1 ~ n) xi = ∑(i = 1 ~ k) xi + ∑(i = k + 1 ~ n) xi | 합의 분할 증명)
+import Mathlib.Data.Finset.Basic
+import Mathlib.Data.Real.Basic
+open Finset
+variable {x: ℕ → ℝ} {n: ℕ} {k : ℕ} (h : k < n)
+
+example :(sum(Icc 1 n) x) = sum(Icc 1 k) x + sum(Icc(k + 1) n) x :=
+by rw[sum_Icc_add_sum_Ico_eq_sum_Icc (by linarith) (by linarith)]
+
+-- Icc a b : 자연수의 닫힌 구간 {i ∣ a ≤ i ≤ b}
+-- Ico a b : 자연수의 반열린 구간  {i ∣ a ≤ i < b}
+-- sum_Icc_add_sum_Ico_eq_sum_Icc :
+--     a ≤ k + 1 → k + 1 ≤ b + 1 →
+--     ∑ i in Icc a b, f i = (∑ i in Icc a k, f i) + (∑ i in Ico (k + 1) (b + 1), f i)
+--     합의 분할 증명. 그냥 있는거 썼음, 구간에 대한 전제조건을 요구함
+-- by linarith : 위의 정리를 쓰려면 구간이 올바르게 잡혔다는 선행 부등식 필요.
+--     각각이 1 ≤ k + 1, k + 1 ≤ n을 차례로 증명해줌
+
+-------------------------------------------------------------------
+
+ex.8 (d | m, d | n → d | (m+ n), d | (m-n) / 나누어떨어짐 증명)
+import Mathlib.Data.Int.Basic
+open Int 
+
+example(d m n: ℤ) (hm: d ∣ m) (hn: d ∣ n) : d ∣ m + n:=
+by
+obtain⟨k, rfl⟩ := hm 
+obtain⟨l, rfl⟩ := hn 
+use k + l 
+ring
+
+-- (hm: d ∣ m) -> d가 m의 약수이다, 어떤 수 k에 대해 m = d * k이다
+-- obtain⟨k, rfl⟩ := hm -> 위의 어떤 수 k를 여기서 쓰는 k로 치환. 내부적으로 d = m * k로 취급
+-- use k + l -> m + n = d * t일 때, t의 값에 k + l를 쓴다는 뜻. use는 "존재하는 값을 제시하라"는 전략
+-- ring 덧셈 분배법칙 (간단한 대수적 정리) 자동증명, 등식정리
+
+-------------------------------------------------------------------
+
+ex.9 (d|m -> d|m * n 증명)
+import Mathlib.Data.Int.Basic
+open Int 
+
+example(d m n: ℤ) (hm: d ∣ m) : d ∣ m * n := 
+by 
+obtain⟨k, rfl⟩ := hm
+
+-- 어떤 k가 존재함을 확인하여 증명 끝
+-- by를 쓰면 rfl을 안 써도 이 by로 끝낸다는 뜻
 
 -------------------------------------------------------------------
 
 
+# 진법 표현
+- 기수(Base) : 수 표현의 기준
+- 올림수(Carry) : 더하기 할 때 1 올리는 그거
+- 빌림수(Borrow) : 피감수 < 감수일 때 윗자리에서 1을 빌림
+- 진법 변환
+    10진수 to others
+        정수부 : 몫이 0이 될 때까지 변환하려는 기수로 나누면서 각 단계의 나머지 나열
+        실수부 : 소수부가 0이 될 때까지 변환하려는 기수로 곱하면서 각 단계의 정수부 값 나열. 정수부 값은 바로 버림
+    others to 10진수
+        해당 기수^n을 자릿수마다 곱하면서 나오는 모든 값의 합
+    2진수 to 8/16진수 and 8/16진수 to 2진수
+        2 to 8/16 : 8진수는 2진수의 3자리씩 끊어서 수로 변환, 16진수는 4자리씩
+        8/16 to 2 : 한 자리를 3, 4자리씩 2진수로 바꿔 배정시키면 됨
+- 보수(complment) : 어떤 k진수 a에 대한 n의 보수는 a와의 합이 nnn...이 되는 수
+    n진수에서는 n의 보수, n - 1의 보수가 있음
+    ex. 2진수 보수는 전체를 toggle한 값
+
+
+# 컴퓨터에서의 수 표현
+- 워드(word) : 컴퓨터 아키텍쳐에 따라 8비트 컴퓨터이면 8비트, 16비트 컴퓨터이면 16비트가 됨
+- 부호-절댓값 표현 (sign–magnitude) : 가장 왼쪽을 부호 비트로 두고 나머지로 수를 표현
+- 부호-1의 보수 표현 (sign–1’s complement) : 양수는 그대로 모든 비트에 표시하고, 음수는 반전해서 표현
+- 부호-2의 보수 표현 (sign-2's complement) : 양수는 그대로 두고 음수는 반전시키고 +1한 값(2의 보수)로 표현
 
