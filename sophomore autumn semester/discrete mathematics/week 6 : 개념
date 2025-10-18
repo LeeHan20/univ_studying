@@ -1,1 +1,45 @@
+1. lean4 원본 주고 골격 빈칸 체우기
+2. 정의 쓰기 
+3. 행렬 det, 여인수, 계산하기, 역행렬 
+4. 증명
+5. lean4를 보고 증명 하기 
+
+
+
+chapter 1, 2
+
+명제
+- 변수(variables) : 아직 값을 모르는 대상을 가리키는 기호
+- 보편명제(universal statement) : 한 집합의 모든 원소에 대해 성질이 참
+    ex. 모든 양의 수는 0보다 크다
+- 조건명제(conditional statement) : if ~, then ~ 꼴
+    ex. n이 18로 나누어떨어지면, 6으로도 나누어떨어진다
+- 존재명제(existential statement) : 적어도 하나가 있다
+    ex. 짝수인 소수가 존재한다
+- 보편•조건명제(universal conditional statement) : 보편성과 조건을 함께 가진 명제
+    ex. 모든 동물 a에 대해, 만약 a가 고양이라면, a는 포유류이다
+- 보편•존재명제(universal existential statements) : 앞부분은 보편, 뒷부분은 존재
+    ex. 모든 냄비에는 뚜껑이 있다
+- 존재•보편명제(existentail universal statements) : 앞부분 존재, 뒷부분 보편
+    ex. 모든 양의 정수보다 작거나 같은 양의 정수 m이 존재한다
+
+
+집합
+- R : real numbers
+- ℤ : integers
+- ℤ⁺ : positive intergers
+
+- 부분집합(subset) 
+    정의 : A ⊆ B ⇔ ∀x (x ∈ A → x ∈ B) 
+    풀이 : 모든 x에 대해 x가 A에 속해 있으면 B에도 속한다 | 이건 ∈과 다르게, {2} ⊆ {1, 2, 3} 이런식으로 집합끼리 비교, 참고로 ∈는 2 ∈ {1, 2, 3}이 맞는 표현
+    기호 : ⊆
+- 진부분집합(proper subset)
+    정의 : A ⊊ B ⇔ (A ⊆ B) ∧ (∃x (x ∈ B ∧ x ∉ A)) 
+    풀이 : A가 B의 부분집합일 때, B에 속하고 A에 속하지 않는 어떤 x가 존재한다
+    기호 : ⊊
+
+
+
+chapter 3
+
 
