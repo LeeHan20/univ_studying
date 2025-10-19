@@ -7,14 +7,6 @@
 
 
 # operators
-논리
-- ∀ : \forall / 모든 (for all)
-- ∃ : \exists / 존재 (there exists)
-- ¬ : \not / 부정 (not)
-- ∧ : \and / 논리곱 (and)
-- ∨ : \or / 논리합 (or)
-- ↔ : \iff / 동치 (iff)
-- → : \to 또는 \imp / 함의 (implies)
 
 함수/증명 구조
 - λ : \lam / 람다 (익명 함수)
@@ -44,6 +36,10 @@ ring
 
 by
 - by 뒤에 오는 것으로 전술을 하겠다
+
+extract
+- 존재 한정자(∃) 나 조건부 존재 증거를 꺼내올 때 사용
+- 즉, “존재한다”는 말을 “이게 그 존재하는 값이야!”로 바꿔주는 도구
 
 
 
@@ -319,6 +315,163 @@ obtain⟨k, rfl⟩ := hm
 # 컴퓨터에서의 수 표현
 - 워드(word) : 컴퓨터 아키텍쳐에 따라 8비트 컴퓨터이면 8비트, 16비트 컴퓨터이면 16비트가 됨
 - 부호-절댓값 표현 (sign–magnitude) : 가장 왼쪽을 부호 비트로 두고 나머지로 수를 표현
+    10진수 변환 : 그냥 하면 됨
 - 부호-1의 보수 표현 (sign–1’s complement) : 양수는 그대로 모든 비트에 표시하고, 음수는 반전해서 표현
+    부호-1의 10진수 변환 : 가장 앞 비트가 0이면 그대로 변환, 1이면 반전시켜서 음수로 변환
+    초과한 값 : 구한 값에 초과한 값 더함
 - 부호-2의 보수 표현 (sign-2's complement) : 양수는 그대로 두고 음수는 반전시키고 +1한 값(2의 보수)로 표현
+    부호-2의 10진수 변환 : 가장 앞 비트가 0이면 그대로 반환, 1이면 2의 보수를 음수로 반환
+    초과한 값 : 무시
+
+
+chapter 2 
+
+# 논리연산자
+- ¬ : 부정 (not)
+- ∧ : 논리곱 (and)
+- ∨ : 논리합 (or)
+- ↔ : 동치 (iff) / inverse exclusive or
+- → : 함의 (implies)
+- exclusive or : only T F일 때면 F
+
+- 역 : p -> q일 때, q -> p
+- 이 : p -> q일 때, ~p -> ~q
+- 대우 : p -> q일 때, ~q -> ~p
+
+- 우선순위 : ~ -> ^ -> v -> → -> ↔
+
+- 항등법칙 : T와 F에 ^, v를 했을 때 항상 같아짐
+- 지배법칙 : T와 F에 v, ^를 했을 때 T, F가 됨
+- 부정법칙 : p ^ ~q = F | p v ~q = T
+- 이중부정법칙 : ~(~p) = p
+- 멱등법칙 : p ^ p = p | p v p = p
+- 교환법칙 : p ^ q = q ^ p | p v q = q v p
+- 결합법칙 : (p ^ q) ^ r = p ^ (q ^ r)
+- 분배법칙 : p v (q ^ r) = (p v q) ^ (p v r)
+- 드모르간법칙 : ~(p ^ q) = ~p v ~q
+- 흡수법칙 : p ^ (p v q) = p
+- 함축법칙 : p -> q = ~p v q
+
+p ^ (p v q) 
+= (p v F) ^ (p v q) (항등)
+= p v (p ^ F) v (F ^ q) (분배)
+= p v F v F (지배법칙)
+= p (항등법칙)
+
+
+- Lean
+-------------------------------------------------------------------
+
+ex.1 ((p -> q) ↔ (~p v q) 증명)
+example(p q : Prop) : (p → q) (¬p ∨ q) := 
+by 
+apply Iff.intro  
+·intro h
+by_cases hp : p
+· exactOr.inr(hhp)
+· exactOr.inl hp
+· intro h hp 
+cases h with
+| inl hnp => contradiction
+| inr hq => exacthq
+
+-------------------------------------------------------------------
+
+ex.2 (((p -> q) ^ (p -> ~q)) ↔  ~p 증명)
+example(p q : Prop) : ((p → q) ∧ (p → ¬q)) ¬p := 
+by
+constructor
+· intro h hp 
+    have h1 : q := h.left hp
+    have h2 : ¬q := h.right hp
+    exact h2 h1
+· intro h 
+    constructor
+    · intro hp; contradiction
+    · intro hp; contradiction
+
+-------------------------------------------------------------------
+
+ex.3 ((p → q) ∧ (p → ¬q) ↔ ¬p, 모순법칙 증명)
+theorem imp_and_impnot_iff_not_skel (p q : Prop) :
+  (p → q) ∧ (p → ¬q) ↔ ¬p :=
+by
+  constructor
+  · intro h
+    intro hp
+    -- h.left : p → q
+    -- h.right : p → ¬q
+    -- p가 참이면 q와 ¬q가 동시에 참이 되어 모순
+    (have hq :=) h.left hp
+    (have hnq :=) h.right hp
+    (exact hnq hq)
+  · intro hnp
+    constructor
+    · intro hp
+      (exact) False.elim (hnp hp)
+    · intro hp
+      intro hq
+      (exact) False.elim (hnp hp)
+
+-- ()안이 빈칸
+
+-------------------------------------------------------------------
+
+ex.4 (p ∨ p ↔ p, 멱등법칙 증명)
+theorem or_idem_skel (p : Prop) : p ∨ p ↔ p :=
+by
+  constructor
+  · intro h
+    cases h with
+    | inl hp => exact hp
+    | inr hp => exact hp
+  · intro hp
+    exact Or.inl hp
+
+-------------------------------------------------------------------
+
+
+# 명제함수와 제한자
+- 명제함수(propositional funtion) : 논의영역이 주어진 변수 x를 포함하여 진릿값을 판별할 수 있는 문장이나 수식 / P(x)
+- 논의영역(domain of discource) : 명제함수에 포함된 변수 x의 범위나 값 / D
+- 전체 한정자 : ∀, 모든 (for all)
+- 존재 한정자 : ∃, 존재 (there exists)
+
+- 한정자와 논리연산자
+    ∀과 ^ -> 분배 가능
+    ∀과 v -> 분배 불가능
+    ∃과 v -> 분배 가능
+    ∃과 ^ -> 분배 불가능
+
+
+# 추론
+- 유효추론 : 참인 전제를 이용한 결론이 모두 참인 결론
+    ex. 전제 : p -> q (T)
+              p (T)
+              결론 : T
+- 허위추론 : 참인 전제를 이용한 결론이 거짓인 추론
+    ex. 전제 : p -> q (T)
+              p (T)
+              결론 : F
+    위의 케이스가 하나라도 있으면 허위추론임
+- 긍정논법(modus pponens) : given p -> q and p is true. thus, q is true. 
+     ex. 만약 비가 오면, 길이 젖는다.
+        비가 오고 있다.
+        따라서, 길이 젖었다
+- 부정논법(modus tollens) : given p -> q and q is false. thus p is false.
+    ex. 만약 개가 침입자를 감지하면, 개가 짖을 것이다.
+        개가 짖지 않았다.
+        따라서 개는 침입자를 감지하지 못했다.
+- 선연적삼단논법(disjunctive syllogism) : one of p and q is true. and p is false. thus, q is true
+- 추론 : 전제가 모두 참이라고 가정하고 결론이 T가 나오면 유효, 아니면 허위로 알아서 계산하셈
+
+
+chapter 3
+
+# 증명법
+- 직접 증명법 : 조건명제 p -> q, p가 참이면 q도 참임을 증명
+- 
+
+
+
 
