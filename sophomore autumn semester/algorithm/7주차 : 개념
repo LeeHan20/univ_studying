@@ -1,0 +1,84 @@
+chapter 4
+
+# huffman
+- 문제상황 :
+    32개의 심볼을 사용하는 텍스트가 있음(알파벳, 공백, 몇 기능적 기호들)
+    이것들 중 자주 나오는 것들이 있는데 그걸 사용하여 압축하고 싶음
+
+- fixed length encoding : 32개니까 2^5만큼 비트필드를 써서 그대로 나열
+- prefix code : A의 코드가 B의 코드의 앞부분(prefix)이 되면 안 됨.
+    따라서, 읽는 것에 혼동이 발생하지 않고 빈도가 높은 것을 짧은 것에 할당하면 압축이 잘 됨
+    트리 표현 : binary tree의 leaf를 이용하여 어떻게 매핑할지 간단하게 정할 수 있음 (왼쪽 0, 오른쪽 1로 설정)
+    최적 코드 : 평균 비트 수(ABL) 가 최소
+    최적 트리 : full binary tree (모든 내부 노드가 자식 2개)
+- huffman encoding : lowest frequency 문자 2개를 묶어 가짜 문자(ω)로 만들고 반복해서 바텀업
+    time complexity : nlogn. 
+    ABL(average bits per letter) = Σ(빈도 × 비트 길이)
+    과정 :
+      1. S를 복사한 S'을 만들어 가장 낮은 빈도의 노드 x(ex. x = 2), y(3)를 꺼냄
+      2. S'에 두 빈도를 합한 w(5)를 넣음
+      3. 노드 w의 두 자식으로 x와 y를 넣음
+      4. 위 과정을 반복
+      note. 재귀적으로 이루어지며, 종료조건은 |S| = 2, 함수는 트리를 반환함
+- 허프만 트리 최적 증명 :
+    predetermined point by observation. 최저 빈도 두 문자는 최적 트리에서 형제 리프가 될 수 있음
+    base : 문자가 2개면 루트와 두 리프가 유일
+    IH(귀납가정) : 허프만 알고리즘이 만든 트리 T'은 최적
+    모순법
+     1. 허프만보다 ABL이 더 작은 Z가 있다고 가정
+     2. 빈도가 가장 낮은 x, y를 리프로 가지는 최적형을 고려
+     3. Z에서 x, y를 제거하고 w로 대체하면 Z'을 얻음
+     4. ABL(Z′) = ABL(Z) − fω, ABL(T′) = ABL(T) − fω
+     5. 가정상 ABL(Z') < ABL(T). 
+     6. 근데 이건 귀납가정과 모순이다. 
+     따라서 모순이니 허프만이 최적
+
+
+chapter 1
+
+# stable matching problem
+- 설명 : 
+    남여 쌍이 서로에 대한 선호도를 쭉 씀
+    여기에서 unstable pair가 없게 해야 함
+    
+    unstable pair : 어떤 파트너가 아닌 남여가 서로를 현재 파트너보다 선호하는 쌍
+    고찰점 : 언제나 stable matching이 존재하는가? -> yes. by the under algorithm
+
+# Gale–Shapley's Propose-and-Reject algorithm
+- 알고리즘 설명 : 
+    1. 어떤 남자가 free이고 아직 프로포즈 하지 않은 여자가 있을 때까지 반복
+    2. 남자 m을 고름
+    3. 남자 m이 프로포즈하지 않은 여자 집단 중 가장 선호하는 여자 w를 고름
+    4-1. 여자가 free라면, engage함
+    4-2. w의 파트너 m'의 선호도가 m보다 낮으면, engage함
+    4-3. 거절함
+- 특징 : 
+    men-optimal assignment임
+
+# hospital–residents matching problem
+- 설명 :
+    병원은 수용 가능한 인원이 한 명이 아님
+    따라서, 조금 상황이 다름
+- 해결 :
+    게일 셰플리 그대로 적용하면 됨. 남자에 병원 넣어서 수용 가능한 인원만큼 다 뽑음
+
+# weighted interval shceduling
+- 설명 : 시작시간, 끝나는 시간, 가중치가 있는 element들이 주어졌을 때,
+        가장 가중치가 높은 중복되지 않는 subset을 찾아라
+- 해결 : dp해야함. OPT(j) = max(wj ​+ OPT(p(j)), OPT(j − 1))
+
+# bipartite matching
+- 설명 : 이분 그래프에서 최대 매칭(간선 수 최대) 찾기
+- 해결 : 최대 유량 쓰셈
+
+# independent set
+- 설명 : 그래프에서 서로 인접하지 않은 정점들의 최대 크기 부분집합 찾기
+- 해결 : 백트래킹 돌리셈
+
+# competitive facility location
+- 설명 : 각 노드에 가중치가 있는 그래프에서 두 플레이어가 번갈아 노드를 선택(이미 선택된 노드의 이웃은 선택 불가). 
+  목표는 자신의 총 가중치 최대화
+- 해결 : PSPACE-complete
+
+
+    
