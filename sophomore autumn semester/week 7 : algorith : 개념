@@ -81,4 +81,61 @@ chapter 1
 - 해결 : PSPACE-complete
 
 
-    
+chapter 2
+
+# computational tractability
+- brute force : checks every possible solution. 
+    특징 : 보통 2^n정도 걸림
+- Polynomial-time : 다항시간. 위의 부르트포스는 지수시간임. n^2같은거
+    note. 어떤 지수시간 알고리즘은 잘 돌아가기도 함
+
+# asymptotic order of growth
+- bounds
+    upper bound (O)
+    lower bound (Ω)
+    tight bound (Θ)
+- notation
+    ex. T(n) = O(f(n)) -> T(n)이 f(n)의 상한선 이하로 성장함
+- properties : 
+    Transitivity (전이성): f = O(g), g = O(h) → f = O(h)
+    Additivity (가법성): : f = O(h), g = O(h) → f + g = O(h)
+
+
+chapter 3
+
+# normal interval scheduling
+- 설명 : 일들의 시작시간 끝나는 시간이 주어짐.
+        최대한 많은 일을 해결하시오. 겹치지 않게
+- 해결 : 일이 끝나는 시간 기준으로 정렬해서 겹치지 않게 그리디
+- 복잡도 : nlogn
+
+# interval partitioning
+- 설명 : 강의 시작시작, 끝나는 시간 주어짐.
+        모든 강의는 해야 하는데, 몇 개의 강의실 쓰냐.
+- 해결 : 강의를 시작시작 기준으로 정렬. 가능한 강의실이 있으면 배정, 없으면 새 강의실 추가.
+- 복잡도 : nlogn 
+
+# scheduling to minimize lateness
+- 설명 : task의 마감시간, 걸리는 시간이 주어짐. 늦는 것을 최소화해야 함
+- 해결 : 마감기한이 빠른 순으로 처리해야 최적
+- 복잡도 : n... 인데 정렬은 안 끼냐?
+
+# optimal caching
+- 설명 : 캐시가 있고, 그 캐시가 담아줄 데이터를 결정하여 cache miss를 최소화
+- 해결 : farthest-in-future. 
+        캐시에 넣을 때는 그냥 계속 넣음
+        꽉 찬 상태라면 캐시의 element 중 가장 나중에 필요한 것을 evict함
+
+# shortest path in gragh
+- 설명 : 방향 그래프에서 시작에서 도착까지의 최단거리 찾기
+- 해결 : dijkstra
+- 복잡도 : implementation by.
+    array : n^2
+    binary heap : m long n
+    d-way heap : m log m/n n
+    fib heap : m + nlogn
+
+
+
+
+
