@@ -1,39 +1,3 @@
-chapter 4
-
-# huffman
-- 문제상황 :
-    32개의 심볼을 사용하는 텍스트가 있음(알파벳, 공백, 몇 기능적 기호들)
-    이것들 중 자주 나오는 것들이 있는데 그걸 사용하여 압축하고 싶음
-
-- fixed length encoding : 32개니까 2^5만큼 비트필드를 써서 그대로 나열
-- prefix code : A의 코드가 B의 코드의 앞부분(prefix)이 되면 안 됨.
-    따라서, 읽는 것에 혼동이 발생하지 않고 빈도가 높은 것을 짧은 것에 할당하면 압축이 잘 됨
-    트리 표현 : binary tree의 leaf를 이용하여 어떻게 매핑할지 간단하게 정할 수 있음 (왼쪽 0, 오른쪽 1로 설정)
-    최적 코드 : 평균 비트 수(ABL) 가 최소
-    최적 트리 : full binary tree (모든 내부 노드가 자식 2개)
-- huffman encoding : lowest frequency 문자 2개를 묶어 가짜 문자(ω)로 만들고 반복해서 바텀업
-    time complexity : nlogn. 
-    ABL(average bits per letter) = Σ(빈도 × 비트 길이)
-    과정 :
-      1. S를 복사한 S'을 만들어 가장 낮은 빈도의 노드 x(ex. x = 2), y(3)를 꺼냄
-      2. S'에 두 빈도를 합한 w(5)를 넣음
-      3. 노드 w의 두 자식으로 x와 y를 넣음
-      4. 위 과정을 반복
-      note. 재귀적으로 이루어지며, 종료조건은 |S| = 2, 함수는 트리를 반환함
-- 허프만 트리 최적 증명 :
-    predetermined point by observation. 최저 빈도 두 문자는 최적 트리에서 형제 리프가 될 수 있음
-    base : 문자가 2개면 루트와 두 리프가 유일
-    IH(귀납가정) : 허프만 알고리즘이 만든 트리 T'은 최적
-    모순법
-     1. 허프만보다 ABL이 더 작은 Z가 있다고 가정
-     2. 빈도가 가장 낮은 x, y를 리프로 가지는 최적형을 고려
-     3. Z에서 x, y를 제거하고 w로 대체하면 Z'을 얻음
-     4. ABL(Z′) = ABL(Z) − fω, ABL(T′) = ABL(T) − fω
-     5. 가정상 ABL(Z') < ABL(T). 
-     6. 근데 이건 귀납가정과 모순이다. 
-     따라서 모순이니 허프만이 최적
-
-
 chapter 1
 
 # stable matching problem
@@ -136,6 +100,75 @@ chapter 3
     fib heap : m + nlogn
 
 
+chapter 4
+
+# huffman
+- 문제상황 :
+    32개의 심볼을 사용하는 텍스트가 있음(알파벳, 공백, 몇 기능적 기호들)
+    이것들 중 자주 나오는 것들이 있는데 그걸 사용하여 압축하고 싶음
+
+- fixed length encoding : 32개니까 2^5만큼 비트필드를 써서 그대로 나열
+- prefix code : A의 코드가 B의 코드의 앞부분(prefix)이 되면 안 됨.
+    따라서, 읽는 것에 혼동이 발생하지 않고 빈도가 높은 것을 짧은 것에 할당하면 압축이 잘 됨
+    트리 표현 : binary tree의 leaf를 이용하여 어떻게 매핑할지 간단하게 정할 수 있음 (왼쪽 0, 오른쪽 1로 설정)
+    최적 코드 : 평균 비트 수(ABL) 가 최소
+    최적 트리 : full binary tree (모든 내부 노드가 자식 2개)
+- huffman encoding : lowest frequency 문자 2개를 묶어 가짜 문자(ω)로 만들고 반복해서 바텀업
+    time complexity : nlogn. 
+    ABL(average bits per letter) = Σ(빈도 × 비트 길이)
+    과정 :
+      1. S를 복사한 S'을 만들어 가장 낮은 빈도의 노드 x(ex. x = 2), y(3)를 꺼냄
+      2. S'에 두 빈도를 합한 w(5)를 넣음
+      3. 노드 w의 두 자식으로 x와 y를 넣음
+      4. 위 과정을 반복
+      note. 재귀적으로 이루어지며, 종료조건은 |S| = 2, 함수는 트리를 반환함
+- 허프만 트리 최적 증명 :
+    predetermined point by observation. 최저 빈도 두 문자는 최적 트리에서 형제 리프가 될 수 있음
+    base : 문자가 2개면 루트와 두 리프가 유일
+    IH(귀납가정) : 허프만 알고리즘이 만든 트리 T'은 최적
+    모순법
+     1. 허프만보다 ABL이 더 작은 Z가 있다고 가정
+     2. 빈도가 가장 낮은 x, y를 리프로 가지는 최적형을 고려
+     3. Z에서 x, y를 제거하고 w로 대체하면 Z'을 얻음
+     4. ABL(Z′) = ABL(Z) − fω, ABL(T′) = ABL(T) − fω
+     5. 가정상 ABL(Z') < ABL(T). 
+     6. 근데 이건 귀납가정과 모순이다. 
+     따라서 모순이니 허프만이 최적
+
+# mst (minimun spanning tree)
+- 정의 : 모든 정점을 잇는 간선의 가중치가 가장 작은 트리
+- 응용 : Network design. 전화선, 전력선, 수도관, TV 케이블, 도로, 컴퓨터 네트워크 등. 
+        Cluster analysis (클러스터링) 에도 사용됨.
+- 생성 
+    kruskal : 모든 간선을 정렬하고 작은 것부터 사이클이 생기지 않으면 연결. 
+    prim : 그냥 하나에서 시작해서 다익스트라 돌리고 사이클 생기기 전까지 함
+    reverse-delete : 간선 가중치가 큰 것부터 지우면서 연결이 유지되면 지움.
+    
+# clustering
+- 설명 : 객체 집합을 유사한 특성을 가진 그룹으로 분류하는 것
+- goal : 다른 클러스터는 멀,같은 클러스터 내부는 가깝게 하는 것
+- application : 
+    무선 네트워크 라우팅
+    유전자 발현 패턴 탐지
+    문서 분류, 이미지 검색
+    천체(별, 은하, 퀘이사) 분류
+- 방법 : n개의 객체를 k개로 나눈다고 하였을 때.
+    1. mst를 일단 만듦.
+    2. 거기에서 비용이 가장 큰 k - 1개의 간선을 제거
+    3. 그러면 최대 spacing의 k-clustering이 됨
+
+
+chapter 5
+
+# merge sort
+- 설명 : 다 나눔. 그리고 합칠 때 비교해서 다 정렬
+- divide : 배열을 반으로 나눔
+- conquer : 각 절반을 재귀적으로 정렬
+- 알잖아 
+
+# counting inversions
+- inversion: i < j인데 aᵢ > aⱼ인 쌍.
+- 목표: 배열의 “정렬 정도(sortedness)” 측정.
 
 
 
