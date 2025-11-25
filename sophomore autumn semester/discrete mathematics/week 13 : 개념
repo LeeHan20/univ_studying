@@ -24,7 +24,7 @@ chapter 6
 - 반사관계(reflexive relation) : 모든 a ∈ A에 대해 (a, a) ∈ R인 관계
 - 비반사관계(irrefelxive relatino) : 모든 a ∈ A에 대해 (a, a) ∈ R이 아닌 관계
 - 대칭관계(symmetric relation) : a, b ∈ A에 대해 (a, b) ∈ R이면 (b, a) ∈ R인 관계
-- 반대칭관계(antisymmetric relation) : a, b ∈ A에 대해 (a, b) ∈ R이고 (b, a) ∈ R이면 a = b인 관계
+- 반대칭관계(antisymmetric relation) : a, b ∈ A에 대해 (a, b) ∈ R이고 (b, a) ∈ R이면 a = b인 관계. 즉, 자시 자신에게 화살표를 쏘지 않는다
 - 추이관계(transitive relation) : a, b, c ∈ A에 대해 (a, b) ∈ R이고, (b, c) ∈ R이면 (a, c) ∈ 관계
 
 # 합성관계
@@ -60,6 +60,7 @@ chapter 6
 		i = 1, 2...이면 Aᵢ != ∅
 		Aᵢ ⊆ A
 		i != j이면 Aᵢ ∩ Aⱼ = ∅
+- 부분순서관계(partial order relation) : 반대, 반대칭, 추이관계가 성립하는 관계
 
 		
 
