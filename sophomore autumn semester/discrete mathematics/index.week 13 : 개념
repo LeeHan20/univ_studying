@@ -1,0 +1,61 @@
+chapter 6
+
+# 관계(Relation)
+- 두 개 이상의 집합의 원소 사이의 연결을 나타내는 개념
+- 순서쌍 : 원소들을 표현하는 방법. 원소 사이에 순서(order)가 존재함을 의미
+- 곱집합 : {(a, b) | a ∈ A, b ∈ B} | caution. 행렬과 같이 A*B와 B*A는 다름
+    확장 곱집합 : 확장 곱집합: 세 집합 이상에도 적용 가능
+    ex. A × B × C = {(a, b, c) | a ∈ A, b ∈ B, c ∈ C}
+- 이항관계 : 두 집합 A, B에 대해 집합 A에서 B로 가는 관계
+    정의역 : 위에서 A
+    공역 : 위에서 B
+    치역 : 공역 중에서 A의 element와 관계가 있는 원소
+- n항 관계 : n개의 집합에 대한 집합
+- 항등관계 : 집합 A에 대해 R = {(a, a)|임의의 a ∈ A}일 때 / 반사관계의 특수한 경우
+- 역관계 : {(b, a) ∈ B x A| (a, b) ∈ R} 그냥 순서 바뀐거
+
+# 관계의 표현
+- 화살표 선도(arrow diagram) : 화살표로 관계를 나타내는 것
+- 좌표도표(coordinate diagram) : 그냥 좌표평면 쓰는거
+- 관계행렬(relation matrix) : 부울 행렬의 행과 열에 element를 쓰고 관계가 있으면 1, 없으면 0으로 표기
+- 방향 그래프(directed gragh) : A에서 A로 가는 관계를 directed하게 표현
+
+# 관계의 성질
+- 반사관계(reflexive relation) : 모든 a ∈ A에 대해 (a, a) ∈ R인 관계
+- 비반사관계(irrefelxive relatino) : 모든 a ∈ A에 대해 (a, a) ∈ R이 아닌 관계
+- 대칭관계(symmetric relation) : a, b ∈ A에 대해 (a, b) ∈ R이면 (b, a) ∈ R인 관계
+- 반대칭관계(antisymmetric relation) : a, b ∈ A에 대해 (a, b) ∈ R이고 (b, a) ∈ R이면 a = b인 관계
+- 추이관계(transitive relation) : a, b, c ∈ A에 대해 (a, b) ∈ R이고, (b, c) ∈ R이면 (a, c) ∈ 관계
+
+# 합성관계
+- (composite relation) : A -> B, B -> C일 때, A -> B를 정의하는 것
+- 표현 : 부울 행렬로 표기
+- 연산 : 두 관계 R과 S를 곱하면 (가운데에 있는 B에 의해 연산 가능) 그게 합성된 결과와 같음
+    곱은 AND(∧), 합은 OR(∨) 로 연산하면 됨(사실 뭐 당연)
+    거듭제곱 : 말 그대로 그냥 행렬의 거듭제곱임 / R이 추이관계라면 거듭제곱을 계속 해도 R과 같음
+- calc properties : 행렬 연산과 동일. (교환, 합성 등)
+- 경로의 길이 idea : 그래프에서 몇 번 갔느냐. 즉, 몇 번의 경로를 거쳐갔느냐로 하나의 index로 활용함
+    notation. 길이 n의 경로가 존재한다.
+    note. I(identity)와의 관계를 길이에 포함하지 않음
+
+# 관계의 폐포
+- 폐포(closure) : 이전의 것에 성질을 유지하며 성질을 추가하는 것
+- 관계에서의 폐포 : 관계 R이 성질 P를 가질 수 있고 R1이 둘을 포함할 때, R1을 R에 대한 P 폐포라고 한다
+- 반사폐포(reflexive closure) : 모든 a에 (a, a) 추가
+    만드는 방법 : R ∪ {(a, a)
+- 대칭폐포(symmetric closure) : (a, b)가 있으면 (b, a)도 추가
+    만드는 방법 : R ∪ R⁻¹
+- 추이폐포(transitive closure) : (a, b), (b, c) 있으면 (a, c) 추가
+    만드는 방법 : R ∪ R² ∪ R³ … = R⁺
+    경로 : 추이폐포가 pow해서 구하니까 graph 구성할 때 도달할 수 있느냐
+    길이 : 몇 번 pow해서 갔느냐
+    연결관계 : 길이가 n인 관계 Rⁿ에 대해 xRⁿy는 x에서 y로의 길이가 n인 경로가 존재. n은 상수가 아닌 무한일 수도 있음
+    도달관계 : x = y 혹은 lim n -> ∞(xRⁿy)
+    note. 유향 그래프에서 두 정점 사이에 도달관계가 성립하면 강하게 연결(srongly connected)되었다고 함
+
+# 동치관계, 부분순서관계
+- 동치관계(equivalence relation) : 반사, 대칭, 추이관계가 모두 성립하는 관계
+- 동치류(equivalence class) : 
+	​
+
+	​
