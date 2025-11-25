@@ -55,8 +55,14 @@ chapter 6
 
 # 동치관계, 부분순서관계
 - 동치관계(equivalence relation) : 반사, 대칭, 추이관계가 모두 성립하는 관계
-- 동치류(equivalence class) : 집합 A에 대해 관계 R이 동치관계일 때, 집합 A의 각 원소 a와 순서쌍을 이루는 원소의 집합
+- 동치류(equivalence class) : 동치관계에 있는 원소들의 모임, S = {A₁, A₂, ...}
 	prop : 
+		i = 1, 2...이면 Aᵢ != ∅
+		Aᵢ ⊆ A
+		i != j이면 Aᵢ ∩ Aⱼ = ∅
+
+		
+
 	​
 
 	​
