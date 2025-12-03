@@ -31,6 +31,8 @@ chapter 05
     -> 분산이 작을수록 더 정확함
     일치성(consistency) : 표본 크기가 커질수록 추정량이 모수에 수렴
     -> 표본 크기가 커질수록 추정량이 모수에 수렴해야 함
+
+# 점추정 - 불편추정(unbiased estimate)
 - 편의(bias) : 어떤 모수 θ의 추정량을 Θ̂라고 할 때,
     -> Bias(Θ̂) = E[Θ̂] − θ
 - 불편추정량(unbiased estimator) : 편의가 0이면 Θ̂는 불편성을 가짐.
@@ -117,7 +119,7 @@ ex) 5.8
         ∴ S²의 최소 분산은 0
         ∴ S²는 σ²의 일치추정량
 
-# 적률추정법(method of moments​​)
+# 점추정 - 적률추정법(method of moments​​)
 - 적률(moment) : 확률변수 X의 r차 적률이라고 함
     -> μᵣ = E[Xʳ]
 - 중심적률(central moment) 
@@ -146,6 +148,7 @@ ex) 5.9
         μ₂ - μ₁² = mp - mp²
         ∴ θ̂₂ = mp̂(1 - p̂) = X̄(1 - X̄/m)
 
+# 점추정 - 최대가능도 추정법(maximum likehood estimate, MLE)
 - 우도함수(likehood function) : 모집단이 미지의 모수 θ에 의존하는 f(x; θ)를 따르고, 확률표본 X₁, X₂, ..., Xₙ으로부터 구성된 관측값 x₁, x₂, ..., xₙ에 대해
     L(θ; x₁, x₂, ..., xₙ) = fX₁, X₂, ..., Xₙ(x₁, x₂, ..., xₙ; θ)
     과 같은 결합확률밀도함수 L(θ).
@@ -174,21 +177,58 @@ ex) 5.11
 - 정의 : 모수의 참값을 포함할 것이라고 추측되는 구간을 구하는 것
 - 신뢰구간(confidence interval) : 모수를 값이 아니고 고려된 구간으로 나타낸 것 
 - 오차한계(error bound) : 두 구간의 차의 절댓값의 반 (|b - a| / 2)
-- 모평균의 신뢰구간 추청 방법:
+
+# 구간추정 - 모평균의 신뢰구간 추청 
     case A. σ²를 알 때
         1. 정규모집단인 경우 -> Z 통계량 사용
         2. 비정규모집단이며 n >= 30인 경우 -> Z 통계량으로 근사
     case B. σ²를 모를 때(s²으로 대신 사용)
         1. 정규 -> t 통계량 사용
         2. 비정규, 30 -> Z 통계량으로 근사
-- note. σ²이 알려진 모집단에서 모평균 μ의 100(1 - a)%의 신뢰구간
+- σ²이 알려진 모집단에서 모평균 μ의 100(1 - a)%의 신뢰구간(표준정규분포 이용):
     x̄ - z_a/2 * σ / √n < μ < x̄ + z_a/2 * σ / √n
-    -> 걍 파이썬 코드 Z.pdf of Z.ppf 하면 됨
+
+ex) 5.15
+- 모집단이 N(μ, 64)의 정규분포를 따를 때, 크기가 81인 표본에 대해 X̄ = 100이었다면 μ에 대한 95% 신뢰구간은?
+-> sol) 1. sigma = np.sqrt(64)             (σ)
+           xbar = 100                      (주어진 평균, X̄)
+           n = 81                          (표본 크기)
+           zalp = norm.ppf(1-0.025, 0, 1)  (z_a/2. 95%신뢰구간이니 반 나눠서 0.025), (0, 1 매개변수는 정규분포에서 평균이 0, 표준편차가 1인 Z(표분정규분포)를 사용한다는 뜻)
+        
+        2. Lint = xbar - zalp * sigma / np.sqrt(n)    (뺌)
+           Rint = xbar + zalp * sigma / np.sqrt(n)    (더함)
+
+- σ²이 알려지지 않은 모평균의 신뢰구간(t분포 이용):
+    x̄ - t_a/2 * (n - 1) * s / √n < μ < x̄ + t_a/2 * (n - 1) * s / √n
+
+ex) 5.18
+- μ = 240, σ = 25인 정규난수 11개를 생성하여 정수로 반올림한 결과에 대해 신뢰수준 95%, 99%인 경우에 대한 모평균 μ의 신뢰구간을 구하는 파이썬 프로그램
+-> sol) 1. mu_real = 240               # 실제 모평균 (난수 생성용)
+           sigma_real = 25             # 실제 모표준편차 (난수 생성용)
+           n = 11                      # 표본 크기 (소표본)
+           sample = np.round(norm.rvs(loc=mu_real, scale=sigma_real, size=n))
+           x_bar = np.mean(sample)          # 표본평균
+           s = np.std(sample, ddof=1)       # 표본표준편차 (자유도 n-1 적용)
+
+        2. def confidence_interval_t(confidence_level, n, x_bar, s):
+            alpha = 1 - confidence_level
+            df = n - 1  # 자유도
+
+            t_val = t.ppf(1 - alpha/2, df) 
+            error = t_val * (s / np.sqrt(n))
     
+            return x_bar - error, x_bar + error
 
+        3. ci_95 = confidence_interval_t(0.95, n, x_bar, s)
+           ci_99 = confidence_interval_t(0.99, n, x_bar, s)
 
+- σ²이 알려지지 않고 대표본(n ≥ 30)인 경우 모평균의 신뢰구간(표준정규분포에서 σ를 s로 대체):
+    x̄ - z_a/2 * s / √n < μ < x̄ + z_a/2 * s / √n
 
+# 구간추정 - 모분산의 신뢰구간 추정
+- 정규모집단인 경우
 
+        
 
 
 
