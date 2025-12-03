@@ -241,7 +241,7 @@ ex) def confidence_interval_of_population_variance(sample, confid_level):
         n = len(sample) - 1     (자유도)
         lc = n*std**2/chi2.ppf(1-confid_level/2, n)
         rc = n*std**2/chi2.ppf(confid_level/2, n)
-        return np.array[lc, rc] (신뢰구간)
+        return np.array([lc, rc]) (신뢰구간)
         
 - 두 정규모집단에서 얻은 표본에 대해 모분산 비의 100(1 - α)%신뢰구간(f분포 이용):
     s₁²/s₂² / f_α/2(v₁, v₂) ≤ σ₁²/σ₂² ≤ s₁²/s₂² / f_1-α/2(v₁, v₂)
@@ -254,10 +254,10 @@ ex) def confidence_interval_of_ratio_of_population_variance(sample1, sample2, co
         v1, v2 = np.var(sample1, ddof = 1), np.var(sample2, ddof = 1) #ddof는 그냥 분산 구할 때 쓴다~
         low = (v1/v2) / f.ppf(1 - confid_level/2, n1, n2)
         up = (v1/v2) / f.ppf(confid_level/2, n1, n2)
-        return np.array[low, up] (신뢰구간)
+        return np.array([low, up]) (신뢰구간)
 
 - 모수가 p인 베르누이 분포로부터 얻은 n개의 확률표본에 대한 p의 100(1 - α)%의 근사적 신뢰구간:
-    p̂ - z_α/2√(p̂(1-p)/n) < p < p̂ + z_α/2√(p̂(1-p)/n)
+    p̂ - z_α/2√(p̂(1-p̂)/n) < p < p̂ + z_α/2√(p̂(1-p̂)/n)
 
     -> p̂ = x/n = ∑(i = 1 ~ n)xᵢ/n이고 n - x ≥ 5, x ≥ 5인 경우에 적용
 
@@ -267,7 +267,13 @@ ex) 5.22
            p = 0.5
            confid_level = 0.95
            alpha = 1 - confid_level
-           error = norm.ppf(
+           error = abs(norm.ppf(alpha/2, 0, 1)) * (p*(1-p)/n)**(0.5)     # norm.ppf(alpha/2, 0, 1)는 음수를 반환. norm.ppf(1 - alpha/2, 0, 1) or abs(norm.ppf(alpha/2, 0, 1))를 써야 함
+
+        2. low = p - error
+           up = p + error
+
+        3. interval = np.array([low, up])
+
            
 
 
