@@ -202,8 +202,6 @@ chapter 6
     CKY (문법 파싱)
 - binary choice : weighted interval scheduling에서 time을 기준으로
     여기서부터의 최적의 선택은 이것이다.를 dp로 남겨놓을 수 있음
-- 
-
 
 
 
