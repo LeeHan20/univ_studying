@@ -32,7 +32,7 @@ chapter 05
     일치성(consistency) : 표본 크기가 커질수록 추정량이 모수에 수렴
     -> 표본 크기가 커질수록 추정량이 모수에 수렴해야 함
 
-# 점추정 - 불편추정(unbiased estimate)
+# 점추정 - 불편추정(unbiased estimation)
 - 편의(bias) : 어떤 모수 θ의 추정량을 Θ̂라고 할 때,
     -> Bias(Θ̂) = E[Θ̂] − θ
 - 불편추정량(unbiased estimator) : 편의가 0이면 Θ̂는 불편성을 가짐.
@@ -185,21 +185,26 @@ ex) 5.11
     case B. σ²를 모를 때(s²으로 대신 사용)
         1. 정규 -> t 통계량 사용
         2. 비정규, 30 -> Z 통계량으로 근사
-- σ²이 알려진 모집단에서 모평균 μ의 100(1 - a)%의 신뢰구간(표준정규분포 이용):
-    x̄ - z_a/2 * σ / √n < μ < x̄ + z_a/2 * σ / √n
+- σ²이 알려진 모집단에서 모평균 μ의 100(1 - α)%의 신뢰구간(표준정규분포 이용):
+    x̄ - z_α/2 * σ / √n < μ < x̄ + z_α/2 * σ / √n
+
+    -> z 파이썬 함수 : norm.ppf(신뢰구간, 0, 1) or Z.ppf(신뢰구간)
 
 ex) 5.15
 - 모집단이 N(μ, 64)의 정규분포를 따를 때, 크기가 81인 표본에 대해 X̄ = 100이었다면 μ에 대한 95% 신뢰구간은?
 -> sol) 1. sigma = np.sqrt(64)             (σ)
            xbar = 100                      (주어진 평균, X̄)
            n = 81                          (표본 크기)
-           zalp = norm.ppf(1-0.025, 0, 1)  (z_a/2. 95%신뢰구간이니 반 나눠서 0.025), (0, 1 매개변수는 정규분포에서 평균이 0, 표준편차가 1인 Z(표분정규분포)를 사용한다는 뜻)
+           zalp = norm.ppf(1-0.025, 0, 1)  (z_α/2. 95%신뢰구간이니 반 나눠서 0.025), (0, 1 매개변수는 정규분포에서 평균이 0, 표준편차가 1인 Z(표분정규분포)를 사용한다는 뜻)
         
         2. Lint = xbar - zalp * sigma / np.sqrt(n)    (뺌)
            Rint = xbar + zalp * sigma / np.sqrt(n)    (더함)
 
 - σ²이 알려지지 않은 모평균의 신뢰구간(t분포 이용):
-    x̄ - t_a/2 * (n - 1) * s / √n < μ < x̄ + t_a/2 * (n - 1) * s / √n
+    x̄ - t_α/2 * (n - 1) * s / √n < μ < x̄ + t_α/2 * (n - 1) * s / √n
+
+    -> t 파이썬 함수 : t.ppf(신뢰구간, 자유도)
+    -> 표본추출 함수 : norm.rvs(표본평균, 표준편차, 표본크기), 배열 return
 
 ex) 5.18
 - μ = 240, σ = 25인 정규난수 11개를 생성하여 정수로 반올림한 결과에 대해 신뢰수준 95%, 99%인 경우에 대한 모평균 μ의 신뢰구간을 구하는 파이썬 프로그램
@@ -223,12 +228,47 @@ ex) 5.18
            ci_99 = confidence_interval_t(0.99, n, x_bar, s)
 
 - σ²이 알려지지 않고 대표본(n ≥ 30)인 경우 모평균의 신뢰구간(표준정규분포에서 σ를 s로 대체):
-    x̄ - z_a/2 * s / √n < μ < x̄ + z_a/2 * s / √n
+    x̄ - z_α/2 * s / √n < μ < x̄ + z_α/2 * s / √n
 
-# 구간추정 - 모분산의 신뢰구간 추정
-- 정규모집단인 경우
+# 구간추정 - 모분산, 모비율의 신뢰구간 추정
+- σ²이 알려지지 않은 정규모집단에서 얻은 표본에 대해 σ²의 100(1 - α)%신뢰구간(χ² 이용):
+    (n - 1)s² / χ²_α/2(n - 1) ≤ σ² ≤ (n - 1)s² / χ²_1-α/2(n - 1) -> χ² 파이썬 함수 : chi2.ppf(신뢰구간, 자유도)
 
+    -> χ² 파이썬 함수 : chi2.ppf(신뢰구간, 자유도)
+
+ex) def confidence_interval_of_population_variance(sample, confid_level):
+        std = np.std(sample)    (표준편차)
+        n = len(sample) - 1     (자유도)
+        lc = n*std**2/chi2.ppf(1-confid_level/2, n)
+        rc = n*std**2/chi2.ppf(confid_level/2, n)
+        return np.array[lc, rc] (신뢰구간)
         
+- 두 정규모집단에서 얻은 표본에 대해 모분산 비의 100(1 - α)%신뢰구간(f분포 이용):
+    s₁²/s₂² / f_α/2(v₁, v₂) ≤ σ₁²/σ₂² ≤ s₁²/s₂² / f_1-α/2(v₁, v₂)
+
+    -> f_x(v₁, v₂) : F-분포의 오른쪽 꼬리 면적이 x가 되는 값
+    -> f 파이썬 함수 : f.ppf(신뢰구간, 자유도1, 자유도2)
+
+ex) def confidence_interval_of_ratio_of_population_variance(sample1, sample2, confid_level):
+        n1, n2 = len(sample1) - 1, len(sample2) - 1
+        v1, v2 = np.var(sample1, ddof = 1), np.var(sample2, ddof = 1) #ddof는 그냥 분산 구할 때 쓴다~
+        low = (v1/v2) / f.ppf(1 - confid_level/2, n1, n2)
+        up = (v1/v2) / f.ppf(confid_level/2, n1, n2)
+        return np.array[low, up] (신뢰구간)
+
+- 모수가 p인 베르누이 분포로부터 얻은 n개의 확률표본에 대한 p의 100(1 - α)%의 근사적 신뢰구간:
+    p̂ - z_α/2√(p̂(1-p)/n) < p < p̂ + z_α/2√(p̂(1-p)/n)
+
+    -> p̂ = x/n = ∑(i = 1 ~ n)xᵢ/n이고 n - x ≥ 5, x ≥ 5인 경우에 적용
+
+ex) 5.22
+- A 후보의 득표율을 예측하기 위해 50명을 임의로 추출해 조사한 결과 25명이 A후보를 지지했을 떄, 지지율 p에 대한 95% 신뢰구간을 구하여라
+-> sol) 1. n = 50
+           p = 0.5
+           confid_level = 0.95
+           alpha = 1 - confid_level
+           error = norm.ppf(
+           
 
 
 
