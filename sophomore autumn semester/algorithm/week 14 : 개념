@@ -1,1 +1,46 @@
+chapter 7
+
+# network flow
+- G(V, E) : 유량 네트워크를 나타내는 방향그래프
+- capacity(용량) : 얼마나 흘러보낼 수 있느냐
+    notation : c(e)
+- flow(유량) : 지금 얼마나 흐르고 있느냐
+    notation : f(e)
+- s-t cut : s, t를 포함하는 두 개의 그룹 A, B로 나누는 것
+    notation : cut(A, B)
+- value of capacity : A에서 B로 가는 모든 용량의 합. 근데 B에서 A로 가는 간선(방향성으로)의 용량은 집계하지 않음
+    notation : cap(A, B)
+
+ex) minimum cut problem
+- find s-t cut of minimun capacity in given graph
+-> sol) 1. 우선 조건은 두 A에서 B로 가는 간선들의 최소 용량을 구하면 됨.
+           두 집합의 노드의 수는 상관 없음
+
+- s-t flow : 유량은 용량보다 크면 안 되며, 들아가는 유량과 나가는 유량의 양이 같아야 한다. 만족하면 유량
+- value of flow : s에서 얼마나 흘러나갔느냐
+     notation : v(f)
+
+ex) maximum flow problem
+- find maximum flow in given graph
+-> sol) 
+
+- ford-fulkerson algorithm(포드-풀커슨):
+augment(f, c, p)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
