@@ -1,6 +1,6 @@
-chapter 7
+chapter 07
 
-# network flow
+# min cut, max flow
 - G(V, E) : 유량 네트워크를 나타내는 방향그래프
 - capacity(용량) : 얼마나 흘러보낼 수 있느냐
     notation : c(e)
@@ -8,13 +8,14 @@ chapter 7
     notation : f(e)
 - s-t cut : s, t를 포함하는 두 개의 그룹 A, B로 나누는 것
     notation : cut(A, B)
+    prop : 최대 유량과 min cut은 같다
 - value of capacity : A에서 B로 가는 모든 용량의 합. 근데 B에서 A로 가는 간선(방향성으로)의 용량은 집계하지 않음
     notation : cap(A, B)
 
 ex) minimum cut problem
 - find s-t cut of minimun capacity in given graph
--> sol) 1. 우선 조건은 두 A에서 B로 가는 간선들의 최소 용량을 구하면 됨.
-           두 집합의 노드의 수는 상관 없음
+-> sol) 1. 우선 조건은 두 A에서 B로 가는 간선들의 최소 용량을 구함
+        2. 다 구한 후 시작점에서 유량이 남아있는 노드을 모두 연결하면 그게 min cut
 
 - s-t flow : 유량은 용량보다 크면 안 되며, 들아가는 유량과 나가는 유량의 양이 같아야 한다. 만족하면 유량
 - value of flow : s에서 얼마나 흘러나갔느냐
@@ -22,10 +23,113 @@ ex) minimum cut problem
 
 ex) maximum flow problem
 - find maximum flow in given graph
--> sol) 
+-> sol) using ford-fulkerson algorithm
 
 - ford-fulkerson algorithm(포드-풀커슨):
-augment(f, c, p)
+    1. 경로 하나를 찾아서 최대 유량을 찾음
+    2. 그 최대 유량만큼 G와 G_f에 표기
+    3. 경로 찾는거(방향)은 G_f 따라서 찾으면 됨
+    4. 이걸 계속 반복
+
+# good augment path
+- 생각해보면, ford-fulkerson에서 최악의 경우 최대 capacity만큼 반복을 함
+- edmonds-karp algorithm: ford-fulkerson에서 path 찾는걸 bfs로 한거
+    prop : 최단 경로로 먼저 가기 때문에 O(VE²)으로 처리 가능
+
+# bipartite perfect matching
+- goal : 이분 그래프에서 서로 겹치지 않게 짝을 짓는 최대 수
+- 문제 변환
+    1. s를 왼쪽 노드들과 모두 연결
+    2. L과 R의 유량을 무한대로 하여 연결
+    3. R을 t 와 모두 연결
+    4. 뭐든 최대유량 알고리즘 돌림
+- perfect matching : 말 그대로 모든 노드가 매치되는 것
+- condition : 모든 부분집합 S에 대해 해당 노드에 인접한 노드의 집합을 N(S)라고 할 떄, |N(S)| ≥ |S|여야 함
+- 시간복잡도:
+    Ford-Fulkerson (DFS) : O(VE)
+    Hopcroft-Karp : O(E√V)
+
+# disjoint paths
+- goal : 간선을 공유하지 않는 최대 경로의 수 (노드는 공유 가능)
+- 문제 반환
+    1. 모든 간선의 capacity를 1로 설정
+    2. 그 후에 최대유량 구하면 그게 path의 수가 됨
+- menger's thoerem(맹거의정리) : disjoint paths의 수는 s와 t의 연결을 끊기 위해 필요한 길의 수와 같다
+
+# circulation with demands (수요 있는 순환) 
+- s와 t가 모두 하나가 아닐 수 있다
+- 정의 : 모든 node는 수요/공급 값 d(v)를 가짐
+    -> d(v) > 0 : sink, t, 소비자
+       d(v) < 0 : source, s, 공급자
+       d(v) = 0 : 단순 경유지
+- goal : 모든 수요와 공급이 채워지는 유량이 존재하느냐
+- condi : 수요와 공급이 동일해야 함
+- 문제 반환
+    1. 모든 공급이 있는 점(d(v) < 0)을 연결하는 super source(s)를 만듦
+    2. 수요도 동일하게 super sink(t)를 만듦
+    3. 수요/공급이 있는 노드들과 super들과의 간선은 해당 수요/공급의 절댓값만큼의 capacity를 가지도록 함
+    4. 최대 유량 구함
+    5. 결과가 나온 그래프의 s에서 나가는 간선들이 꽉 찼다면(Saturated) 수요가 모두 만족된 것임
+
+# circulation with demands with lower bounds
+- 이번에는 간선에 2 이상은 무조건 흘러야 한다는 조건이 붙었음. 즉, 간선의 하한이 생김
+- 생각해보면, 무조건 흘러야 한다는 것은 수요임. 시점의 입장에서는 양수의 수요, 종점 입장에서는 음수의 수요
+- 문제 반환
+    1. 하한이 있는 모든 간선에 대해 시점의 d(v)에 하한의 절댓값만큼 더함
+    2. 종점의 d(v)에는 하한의 절댓값만큼 뺌
+    3. 이렇게 수요/공급을 설정해놓고 다시 최대유량 돌림
+
+ex) survey design
+- 소비자들이 가진 물건이 주어지고 소비자들은 주어진 설문 횟수를 채워야 하며 제품은 설문을 받는 횟수를 채워야 함
+-> sol) 기본적으로 lower bound circulation demands로 풀면 됨
+        1. s, L(consumer), R(product), t에 간선을 연결함. L -> R은 capacity 1
+        2. s -> L의 간선에 해당하는 설문 요구 횟수만큼 하한을 부여함. R -> t에도 마찬가지
+        3. 하한을 수요/공금으로 치환
+        4. t -> s인 capacity가 무한인 간선을 생성
+        5. 최대 유량 돌려서 s에서 나가는 간선이 꽉 찼으면 설문조사 모델링 성공
+
+# image segmentation
+- 이미지는 배경과 전경으로 나눌 거임
+- given : 각 픽셀의 전경 점수, 배경 점수(노드), 두 픽셀을 분리하였을 때의 패널티 점수
+- goal : 나눈 배경/전경 점수 최대화, 패널티 점수 최소화
+- 문제 반환
+    1. 모든 노드에 대해 s, t와 연결함
+    2. 간선의 capacity는 해당 전경/배경 점수임
+    3. 바로 최대유량 구해서 mincut 구함
+    4. 그렇게 두 부분으로 나누면 최적 전경/베경 구분됨
+
+# project selection 
+- goal : 비용, 이익이 있을 때 프로젝트 선택하여 이익 극대화
+- given : 수행비용/이익, 선수 프로젝트
+- 문제 반환 
+    1. s를 이익, t를 비용이 드는 간선들과 연결 (이분 매칭같이)
+    2. 프로젝트의 의존성 관계를 구성
+    3. min cut 구함
+    4. s에 속하는 집합이 수행했을 때 이익이 최대가 되는 집단, cut capacity가 최대 이익이 됨
+
+# baseball elimination
+
+
+chapter 08
+
+# polynomial-time reductions 
+- reduction by equivalence : 수학적으로 같다면 환원할 수 있음
+
+ex) independent set to vertex cover
+- 두 문제가 서로 환원된다는 것을 보이시오
+    independent set : 그래프에서 연결되어 있지 않은 노드들의 집합의 수를 세는 문제
+    vertex cover : 해당 집합과 그에 연결된 간선을 모두 지우면 연결된 그래프가 없게 되는 노드의 집합을 찾는 문제
+-> sol) 
+
+
+- reduction from special case to general case : 일반적인 문제를 알 수 있으면 특수한 케이스도 풀 수 있음. 
+    그에 따라, 어려운 정도와 쉬운 정도는 같음
+    즉, 풀려는 문제보다 일반적인 경우가 증명되어 있으면 그걸 가져다 쓸 수 있다
+- reduction via gadgets : 문제를 부분으로 나누어 다른 문제로 환원
+
+
+
+
 
 
 
