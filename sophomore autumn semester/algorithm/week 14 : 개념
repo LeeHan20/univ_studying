@@ -108,6 +108,20 @@ ex) survey design
     4. s에 속하는 집합이 수행했을 때 이익이 최대가 되는 집단, cut capacity가 최대 이익이 됨
 
 # baseball elimination
+ex)
+- 경기에서 어떤 팀이 아직 (공동)우승 가능성이 남아있느냐
+    한 번 이기면 1점을 획득함
+    여러 팀이 여러 번 경기를 함
+    어떤 팀 z의 (현재 점수) + (남은 라운드 수) = M이라고 함
+-> sol) 1. s -> 남아 있는 경기들
+            예를 들어, 1과 3의 경기가 4번 남았다면 s -> (1, 3)으로 용량이 4인 간선
+        2. 경기들 -> 팀
+            예를 들어, (1, 3)인 노드는 1팀과 3팀 노드에 영향을 줌. (1, 3) -> 1 and 3. 용량을 무한대로 설정. 누가 이겨도 상관없게 길을 열어둠
+        3. 팀 -> t
+            해당 팀은 z의 최대 점수인 M보다 크면 안 됨. 따라서 최대 M - (해당 팀의 현재 점수)만큼만 이겨야 함.
+            따라서 팀 -> t의 용량은 M - (해당 팀의 현재 점수)이 됨
+        4. 최대 유량 구함
+        5. s에서 나가는 간선이 막혀있으면 z는 가능성 있음. 안 막혀있으면 우승 못 함
 
 
 chapter 08
@@ -127,11 +141,54 @@ ex) independent set to vertex cover
     즉, 풀려는 문제보다 일반적인 경우가 증명되어 있으면 그걸 가져다 쓸 수 있다
 - reduction via gadgets : 문제를 부분으로 나누어 다른 문제로 환원
 
+# 3-SAT problem
+- literal(변수) : X̄₁, X₂...
+- clause(절) : 리터럴을 V(or)으로 묶은 것. 3-sat는 무조건 리터럴이 3개임
+    notation : C₁ = (X̄₁ V X₂ V X₃)
+- CNF(conjunctive normal form) : clause를 ∧(and)로 묶은 것
+    notatton : Φ : C₁ ∧ C₂ ...
+- goal : 각 리터럴에 적당히 0 or 1을 넣어서 Φ가 참이 되도록 할 수 있는가?
+- prop : 다항 시간 내에 풀 수 있는 방법이 발견되지 않음. np-complete의 대표 예제
 
+# Directed Hamiltonian cycle
+- 문제 : 방향 그래프 G(V, E)에 대해 모든 정점을 한 번씩만 방문하고 다시 돌아오는 경로가 있느냐?
+- 반환
+    1. k개의 clause에 대해 literal의 수 만큼의 layer를 만들고, 각각의 layer는 3*(k + 1)개의 노드를 가짐
+    2. s부터 x1으로 들어갈 때 정/역방향을 정해 x, X̄에 해당하는 clause에 방문할 수 있도록 간선을 이어 방문처리함
+    3. cnf가 참이 된다면 헤밀턴 순환 존재
 
+note1. 물론 그냥 구현할 수 있음. 근데 3-sat 문제로 치환시키는거임
+note2. 모든 그래프의 헤밀턴 순환을 sat로 구할 수 있는게 아니고, sat를 만족할 때 대응하는 헤밀턴 순환이 있다는 것임
 
+# 3-dimensional matching (from 3-sat three dimes matching)
+- 문제 : n의 크기의 세 개의 집합 X, Y, Z를 섞은 임의의 T에 대해 겹치지 않는 {x, y, z}를 n개 뽑아서 X, Y, Z의 모든 원소를 다 덮을 수 있는가?
+- 반환
+    1. xn을 뽑아서 true or false unit으로 나눔
+    2. 해당 literal은 clause의 수 k만큼의 true/false unit을 가짐
+    3. 이제 걍 매칭을 함
+    4. 근데 이제 literal이 3개라는 점에서 3d가 되는 거임
+    5. 매칭이 되면 3-sat, 3dm 다 되는 거고 안 되면 안 되는 거임
 
+note. 강의안의 그림은... 이게 무슨 이상한 그림인가 
 
+# 3-colorability
+- 문제 : 그래프를 r, g, b로 coloring 할 수 있느냐. 인접하지 않도록
+- 반환
+    1. X̄, X는 다른 색상을 가짐 (red or green)
+    2. C = x, x, x일 때, 셋을 노드로 두고 이 셋과 이어져 있는 blue node를 설정
+    3. 세 노드 아래에 2 * 3의 노드를 두고 [2][3]에서 green node는 [0][], [1][0]과 연결, red는 [1][2] 노드에 연결함
+    4. x, x, x를 coloring하면 됨. 근데 clause가 여러 개일 때, 해당 x의 color는 전역적으로 관리됨
+    5. 색칠되면 해결 안 되면 안 됨
+
+# Subset sum
+- 문제 : 자연수 집합이 주어졌을 때, 그 부분집합의 합이 목표갑 T가 될 수 있느냐
+- 반환
+    1. subset에서의 numberic한 pick은 sat의 literal 진리값 설정과 비슷하다
+    2. 또한 표를 만들어서 2진수로 숫자들을 놓고 선택하는 것에 대응하는 bit를 알 수 있다. 
+    3. 그것에 맞춰 2⁰, 2¹... 위 자릿수 계산을 통해 10진수로 변환시킬 수 있다.
+    4. 그리고 더미, complement, padding 등을 통해 1, 1, 1, 4, 4, 4(왜 4인지는 모름)을 맞췄을 때의 complement에는 10진수로 연산
+    5. 해당 SAT가 만족된다면 이 subset sum 문제를 해결할 수 있다
+    
 
 
 
