@@ -252,6 +252,9 @@ ex) 8.9
 - 상한(least upper bound, superemum), 하한(greatest lower bound, infimum) : 상계 중 가장 작은거, 하계 중 가장 큰거
 	notation : LUB(B), GLB(B)
 	prop : 최대 원소와 같이 유일함
+	cf. LUB({a, b})를 a와 b의 논리합, a ∨ b
+		GLB({a, b})를 a와 b의 논리곱, a ∧ b로 부르기도 함
+		-> or, and 하면 상/하한이 나오기 때문
 
 ex) 8.16
 - 다음 하세 도형에 대해 B₁ = {2, 5, 6}, B₂ = {6, 7, 8}의 LUB, GLB를 구하시오
@@ -270,9 +273,8 @@ ex) 8.16
 		B₂도 마찬가지로 판단
 
 # 격자
-
-
-		
+- 격자(lattice) : L의 임의의 두 원소 a, b에 대해 집합 {a, b}의 하한과 상한이 각각 하나씩 존재하는 부분순서집합(L, ≼)
+	
 
 
 
