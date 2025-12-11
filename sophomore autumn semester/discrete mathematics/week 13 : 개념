@@ -1,10 +1,3 @@
-note. 시험범위가 말이 안 된다. 이산수학부터 시작해서 자료구조 - 알고리즘까지 쭉 훑고
-	  정규학기 2-2에 배우는 허프만 복호화까지 1-2에 배운다.
-	  이건 ㄹㅇ 한 학기에 이 수업만 들어도 생각보다 알차게 보낼 수 있을 정도의 양이다.
-	  거기에 평생 쓸 일 없는 Lean4까지 증명에 쓴다.
-	  사실상 이산수학 + 자료구조 + 알고리즘 + 프로그래밍 수업
-	  근데 다 이해하면 빠르게 올라오긴 할 듯
-
 chapter 06
 
 # 관계(Relation)
@@ -358,10 +351,12 @@ chapter 10
 
 # 순회
 - 전위, 중위, 후위
+- https://github.com/LeeHan20/univ_studying/tree/main/sophomore%20spring%20semester/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0
 
 # 활용
 - 프림, 크루스칼, 다익스트라, 허프만 복호화...
- 1학년 과목 맞냐
+- https://github.com/LeeHan20/univ_studying/tree/main/sophomore%20autumn%20semester/algorithm
+
 
 
 
