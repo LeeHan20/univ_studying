@@ -25,7 +25,7 @@ chapter 06
 - 비반사관계(irrefelxive relatino) : 모든 a ∈ A에 대해 (a, a) ∈ R이 아닌 관계
 - 대칭관계(symmetric relation) : a, b ∈ A에 대해 (a, b) ∈ R이면 (b, a) ∈ R인 관계
 - 반대칭관계(antisymmetric relation) : a, b ∈ A에 대해 (a, b) ∈ R이고 (b, a) ∈ R이면 a = b인 관계, 반대는 성립하지 않는 관계
-- 추이관계(transitive relation) : a, b, c ∈ A에 대해 (a, b) ∈ R이고, (b, c) ∈ R이면 (a, c) ∈ 관계
+- 추이관계(transitive relation) : a, b, c ∈ A에 대해 (a, b) ∈ R이고, (b, c) ∈ R이면 (a, c) ∈ R인 관계
 
 # 합성관계
 - (composite relation) : A -> B, B -> C일 때, A -> C를 정의하는 것
