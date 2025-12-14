@@ -28,7 +28,7 @@ chapter 06
 - 추이관계(transitive relation) : a, b, c ∈ A에 대해 (a, b) ∈ R이고, (b, c) ∈ R이면 (a, c) ∈ 관계
 
 # 합성관계
-- (composite relation) : A -> B, B -> C일 때, A -> B를 정의하는 것
+- (composite relation) : A -> B, B -> C일 때, A -> C를 정의하는 것
 - 표현 : 부울 행렬로 표기
 - 연산 : 두 관계 R과 S를 곱하면 (가운데에 있는 B에 의해 연산 가능) 그게 합성된 결과와 같음
     곱은 AND(∧), 합은 OR(∨) 로 연산하면 됨(사실 뭐 당연)
