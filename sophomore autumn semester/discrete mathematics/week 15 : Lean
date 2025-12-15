@@ -1,1 +1,112 @@
+# schema
+- 명시적 인자 : ()
+   -> 사용자가 직접 함수에 전달해줘야 함
+- 암시적 인자 : {}
+   -> cpp의 auto나 template같이 Lean이 추론하여 결정함
+- parameter role : lean에서는 반드시 하나의 매개변수만 받을 수 있음.
+   currying 기법을 통해 다수의 매개변수를 받는 함수가 구현됨
+- currying : 람다 함수로 A가 (A -> Prop)를 반환하고 그 안에 있는 A가 Prop를 반환하는 형식
+   notation : A -> A -> Prop
+   prop : A -> (A -> Prop)과 같이 오른쪽 결합법칙을 따름
+- simpa : 그냥 이거 있으니까 완료해라
+- using : 이거 써라
+- exact : 이게 목표와 일치한다. 즉, 제출한다
+
+
 chapter 06
+
+1. 항등관계
+def IdRel (A : Type) : A -> A -> Prop :=
+  fun x y => x = y
+
+- (A : Type) : cpp의 template와 동일. 변수의 타입 종속성을 없애고 generic하게 작성
+- A -> A -> Prop : 람다로 정의된 매개변수.
+    cf. A -> (A -> Prop)
+- fun x y => x = y : x, y에 대해 x = y를 Prop로 반환해주는 람다 함수
+
+2. 동치관계
+theorem IdRel_refl (A : Type) :
+  ∀ x : A, IdRel A x x :=
+by
+  intro x 
+  rfl
+
+theorem IdRel_symm (A : Type) :
+  ∀ {x y : A}, IdRel A x y -> IdRel A y x :=
+by 
+  intro x y h
+  simpa [IdRel] using h.symm
+
+theorem IdRel_trans (A : Type) : 
+  ∀ {x y z : A}, IdRel A x y -> IdRel A y z -> IdRel A x z :=
+by
+  intro x y z h1 h2
+  simpa [IdRel] using h1.trans h2
+
+- intro 변수 할당 role : theorem 아래쪽의 원소들을 차례로 할당
+   조건들이 ->로 있을 때는 람다식의 가장 밖의 조건부터 가져옴
+
+3. 비반사관계
+def Irreflexive {A : Type} (R : A -> A -> Prop) : Prop :=
+  ∀ a : A, ¬ R a a
+
+theorem Irreflexive_no_loop {A : Type} {R : A -> A -> Prop} (h : Irreflexive R) :
+  ∀ a : A, ¬ R a a :=
+by
+  intro a
+  exctact h a
+
+4. 반대칭관계
+def Antisymmetric {A : Type} (R : A -> A -> Prop) : Prop :=
+  ∀ ⦃a b : A⦄, R a b → R b a → a = b
+
+theorem le_antisymmetric : 
+  Antisymmetric (fun x y : ℕ -> x ≦ y) :=
+by
+  intro a b h1 h2
+  exact Nat.le_antisymm h1 h2
+
+5. 합성관계
+def comp {A, B, C : Type} (R : A -> B -> Prop) (S : B -> C -> Prop) : A -> C -> Prop :=
+  fun a c => ∃ b : B, R a b ∧ S b c
+
+theorem comp_exercise_iff {A, B, C : Type} {R : A -> B -> Prop} {S : B -> C -> Prop} (a : A) (c : C) :
+  comp_exercise R S a c ↔ ∃ b, R a b ∧ S b c :=
+by 
+  rfl
+
+theorem comp_exercise_exists_mid {A, B, C : Type} {R : A -> B -> Prop} {S : B -> C -> Prop} {a : A} {c : C} :
+  comp_exercise R S a c -> ∃ b, R a b ∧ S b c :=
+by
+  intro h
+  exact h
+  
+- R a b ∧ S b c : R에 (a, b)가 있고 S에 (b, c)가 있다
+- 위는 comp라고 def되어있는데, comp;_exercise라고 보면 될 듯
+
+6. 합성관계의 거듭제곱
+def Rpow {A : Type} (R : A -> A -> Prop) : ℕ -> A -> A -> Prop
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+def Antisymmetric {A : Type} (R : A -> A -> Prop) : Prop :=
+  ∀ ⦃a b : A⦄, R a b → R b a → a = b
