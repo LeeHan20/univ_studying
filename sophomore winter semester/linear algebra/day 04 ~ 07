@@ -1,2 +1,7 @@
 # 백터의 외적
-- 
+- 외적(cross, outer, vector product) : 3차원의 백터에 대해 다음과 같음
+    method : | i  j  k  |
+             | x₁ x₂ x₃ |
+             | y₁ y₂ y₃ |
+    prop : X x y = -Y x X
+
