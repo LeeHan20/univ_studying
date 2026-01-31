@@ -1,0 +1,36 @@
+
+ex) 2.8 - 1
+제시문 : VSRQJHEREVTXDUHSDQWU
+암호화 방식 : 카이사르(n = 3인 단순치환)
+goal : 복호화하여라
+정답 : spongebobsquarepantr
+
+ex) 2.8 - 2
+제시문 : CSYEVIXIVQMREXIH
+암호화 방식 : 랜덤 n만큼 이동.
+goal : 평문과 키를 구하여라
+정답 : 평문 youareterminated, 키 n = 21인 단순치환 암호
+
+for (int i = 0; i < 26; ++i) {
+    for (int j = 0; j < (int)line.size(); ++j) {
+        if (line[j] == 'Z') {
+            line[j] = 'A';
+            continue;
+        }
+        
+        line[j]++;
+    }
+    
+    cout << i << "th try : " << endl;
+    
+    for (int j = 0; j < (int)line.size(); ++j) {
+        cout << char(line[j] + 32);
+    }
+    cout << endl;
+}
+
+ex) 2.8 - 3
+문제 : 초당 2⁴⁰
+
+
+    
