@@ -49,7 +49,20 @@ cout << (n / (double)(15*15*3*15*3)) * pow(2, 26) << endl;
 ---------------------------------------------------------------------------------------
 
 ex) 2.8 - 4
-- 복합치환 암호(vigenere crypto?)가 작동하는 방식을 예를 들어 설명하고 단순치환 암호의 통계적 공격을 이용해 vigenere 암호를 공격하는 방법을 찾아보시오
+- 복합치환 암호(vigenere cipher)가 작동하는 방식을 예를 들어 설명하고 단순치환 암호의 통계적 공격을 이용해 vigenere 암호를 공격하는 방법을 찾아보시오.
+-> sol) ans I (perfectly wrong)
+        1. what is a polyalphabetic substitution cipher?
+        unlike a simple substitution cipher, which replaces each plaintext character with a fixed one-to-one mapping, a polyalphabetic cipher applies different substitutions depending on the position of the character.
+        for example, given a key "01", the plaintext "ABCD" is encrypted by shifting A by 0, B by 1, C by 0, and so on, repeating the key cyclically.
+        2. based on the example above, if we assume a key of arbitrary length m and a plaintext of length n
+        (possibly including meaningless padding), we could naively attempt all possible keys by exhaustive search.
+        the time complexity of such a brute-force approach would be on the order of O(n^3)
+        therefore, the question is:
+        is there a more efficient algorithm to infer the key without relying on brute-force search?
+
+        ans II
+        1. same
+        2. the point is key is repeated by the length of m
 
 ---------------------------------------------------------------------------------------
 
@@ -69,5 +82,103 @@ ex) 2.8 - 6
 ---------------------------------------------------------------------------------------
 
 ex) 2.8 - 7
+- 암호학 측면에서 혼돈과 확산의 개념을 정의하라. 고전암호에서 혼돈만 적용된 암호와 확산만이 적용된 암호를 구분해 설명하라. 또 이 장에서 다룬 암호 중에서 혼돈과 확산이 모두 적용된 암호는 어떤 것일까?
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 8
+- 2-1에 있는 단순치환 예제를 복호화하라
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 9
+- 이 장 맨 처음에 등장하는 이상한 나라의 엘리스 인용구에 있는 암호문을 복호화하라
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 10
+- 단순치환 암호로 암호화된 다음 메시지를 복호화하라
+제시문 : 
+GBSXUCGSZQGKGSQPKQKGLSKASPCGBGBKGUKGCEUKUZKGGBSQEICA 
+CGKGCEUERWKLKUPKQQGCIICUAEUVSHQKGCEUPCGBCGQOEVSHUNSU 
+GKUZCGQSNLSHEHIEEDCUOGEPKHZGBSNKCUGSUKUASERLSKASCUGB 
+SLKACRCACUZSSzeUSBEXHKRGSHWKLKUSQSKCHQTKZHEUQBKZAEN 
+NSUASZFENFCUOCUEKBXGBSWKLKUSQSKNFKQQKzeHGEGBSXUCGSZQ 
+GKGSQKUZBCQAEIISKOXSZSICVSHSZGEGBSQSAHSGKHMERQGKGSKR
+EHNKIHSLIMGEKHSASUGKNSHCAKUNSQQKOSPBCISGBCQHSLIMQGKG
+SZGBKGCGQSSNSZXQSISQQGEAEUGCUXSGBSSJCQGCUOZCLIENKGCA 
+USOEGCKGCEUQCGAEUGKCUSZUEGBHSKGEHBCUGERPKHEHKHNSZKGGKAD
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 11
+- 단순치환 암호에 대해 분석을 지원할 수 있는 프로그램을 작성하라. 프로그램은 암호문을 읽어 각 문자의 빈도수를 계산하고 분석자를 위해 그 결과를 전시해야 한다. 분석자가 키를 추측할 수 있어야 하며 추정되는 키를 사용해 복호화한 결과를 전시할 수 있어야 한다
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 12
+- 연습문제 11번의 프로그램을 확장해 메시지를 우선 복호화할 수 있도록 하라. 프로그램 작성에 활용할 수 있는 한 가지 현명한 방법은 다음화 같다. 처음 키를 추측할 때는 알려진 알파벳의 빈도수와 계산된 빈도수를 활용하라. 그리고 추정해 복호화한 결과에서 사전에 있는 단어의 수를 계산하고 이를 점수화해 사용하라. 다음 단계로, 키에 있는 각 문자를 빈도수가 높은 인접한 문자와 바꾸어 점수를 다시 계산하라. 만약 점수가 올라가면 키를 그 문자로 바꾸고 그렇지 않으면 그대로 두라. 이런 작업을 점수가 더 이상 올라가지 않을 때까지 모든 알파벳 문자를 사용해 반복하라. 수작업을 하는 암호분석자를 지원하기 위해 연습문제 11번에 있는 프로그램의 모든 기능은 그대로 유지해야 한다
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 13
+- 4 * 4행렬로 된 이중전위 암호를 사용해 다음 메시지를 암호화하라
+열 순열 : (1, 2, 3, 4) -> (2, 4, 1, 3)
+행 순열 : (1, 2, 3, 4) -> (3, 1, 2, 4)
+제시문 : 
+we are all together
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 14
+- 다음 암호문을 복호화하라
+제시문 : 
+TAUTMOCSMNIMREBOTNELSTRHEREOAEVMWIH
+ISEEATMAEOHWHSYCEELTTEOHMUOUFEHTRFT
+제시문은 7 * 10으로 구성된 행렬를 이용한 이중전위 방법으로 암호화되어있다. 
+힌트 : 
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 15
+- 행렬의 크기를 안다고 가정하고 이중전위 암호에 대한 자동화된 공격 방법을 개략적으로 기술하라
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 16
+- [표 2-1]에 나오는 코드화된 문자들을 이용해 다음 두 암호문은 동일한 일회성 암호를 사용해 암호화되었다
+제시문 : 
+KHHLTK, KTHLLE
+각 메시지에 대해 가능한 평문과 대응하는 일회성 암호를 구하여라
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 17
+- [표 2-1]의 코드화된 문자를 이용해 다음 암호문은 일회성 암호로 암호화되어 있다.
+제시문 : 
+KITLKE
+편문이 "thrill"이라면 키는 무엇일까? 평문이 "tiller"라면 키는 무엇일까?
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 18
+- 한 메시지가 1024비트로 구성되어 있다고 가정하자. 64비트의 키를 1024비트로 확장하는 방법을 설계하라. 확장된 1024비트를 일회성 암호에서 하는 것과 동일하게 메시지와 XOR연산을 하라. 만들어진 암호문은 일회성 암호만큼 안전성이 있을까? 일회성 암호만큼 안성정이 보장된 암호가 가능할까?
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 19
+- 코드북 암호의 전산화된 버전을 설계하라. 설계된 암호체계는 가능한 많은 코드북을 포함해야 하며, 각각의 코드북은 특정한 메시지를 암호화(또는 복호화)할 때 사용될 코드북을 결정하기 위한 키를 가지고 있어야 한다/
+
+---------------------------------------------------------------------------------------
+
+ex) 2.8 - 20
+- 이 장에서 순방향 탐색 공격이 공개키 암ㅁ호체계를 어떻게 공격하는가를 설명했다. 동일한 방법이 대칭키 암호를 공격하는 방법으로 사용될 수 없는 이유는 무엇인가?
+
+
+
+
+
+
+
 
     
