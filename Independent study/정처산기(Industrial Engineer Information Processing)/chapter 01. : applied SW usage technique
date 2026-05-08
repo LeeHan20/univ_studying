@@ -303,7 +303,28 @@
         RARP(reverse address resolution protocol) : 물리적 주소를 IP 주소로
 
 # section 14. OSI 참조 모델. A
-- 
+- OSI 참조 모델(open system interconnection) : ISO에서 제안한 프로토콜
+    prop : 1 ~ 3계층을 하위, 4 ~ 7계층을 상위 계층이라고 함
+- 물리 계층(physical layer) : 실제 물리적 접속/절단에 대한 규칙
+- 데이터 링크 계층(data link) : 시스템 간 연결 설정과 유지, 종류를 담당
+    prop : 송/수신 속도 차이 해결을 위함 흐름제어기능
+           오류 검출, 회복을 위한 오류제어기능
+           프레임 순서적 전송을 위한 순서제어기능
+    ex. HDLC, LAPB, MAC, LAPD, PPP, BSC
+- 네트워크 계층(network) : 시스템 간의 네트워크 연결 관리 및 데이터 교환/중계, 경로 설정 담당
+    prop : 경로 설정(rounting), 패킷 정보 전송 등 수행
+    ex. X.25, IP, ICMP, IGMP
+- 전송 계층(transfer) : 논리적 안정과 균일한 데이터 전송을 담당
+    prop : 종단 시스템(end-to-end) 간의 전송 연결 설정, 데이터 전송, 연결 해제, 주소 설정, 다중화, 오류/흐름제어를 담당    
+    ex. TCP, UDP
+- 세션 계층(session) : 송/수신 간 대화 구성 및 동기 제어 데이터 교환 담당
+    prop : 대화 처리를 위해 토큰이 사용됨
+- 표현 계층(presentation) : 데이터를 통신에 적당한 형태로 변환 담당. (세션 -> 응용, 반대도)
+- 응용 계층(application) : 사용자가 OSI 환경에 접근할 수 있도록 서비스 제공
+    ex. TELNET, FTP, SMTP, HTTP
+
+# section 16. 정보 통신망 기술. A
+
     
                
     
