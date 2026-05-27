@@ -13,4 +13,9 @@
 | promote | 촉진하다, 홍보하다, 승진시키다 |
 | committee | 위원회 |
 | budget proposal | 예산안 |
-
+| cater | (행사에) 음식을 공급하다 |
+| department chair | 학과장 |
+| envelope | 봉투, 감싸다 | 
+| shipment | 수송, 수송물 |
+| heighborhood | 동네, 이웃 |
+| botanical | 식물의, 식물에서 채취한 |
