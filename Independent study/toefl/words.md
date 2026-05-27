@@ -6,7 +6,7 @@
 | shifts | 옮기다, 회의 시간 |
 | job candidate | 구직자 |
 | executives | 경영진 |
-| broke | out 일어나다 |
+| broke out | 일어나다 |
 | turnout | 참석자 수, 득표 수 |
 | anniversary | 기념일 |
 | scholarship | 장학금, 학문 |
