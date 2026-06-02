@@ -1,7 +1,7 @@
 | English | Korean |
 |---|---|
 | clarification | 설명 |
-| conference | 회의 |
+| conference | 회의.. 그냥 영어 느낌 그대로 가도 될 듯 |
 | be conscious | 의식을 가지다, 알고 있다 |
 | shifts | 옮기다, 회의 시간 |
 | job candidate | 구직자 |
